@@ -1,2 +1,4 @@
 tablas
 En ciertos caso, algunas interrelaciones si bien pueden modelizarse (en el modelo relacional) con una tabla. Para ahorrar tablas, evitando mapear interrelaciones entre entidades donde aparezca cardinalidad (1,1) o bien (0,1). Simplemente en una de las tablas que representan entidades se coloca un atributo con el identificador de otra entidad, el cual actúa como clave foránea
+
+Los atributos calculables de ciertas entidades fueron incluidos en las mismas, dado que se optó por que dichos atributos se obtengan directamente en lugar de calcularlos al realizar las consultas. En este caso se prioriza el tiempo de ejecución de las consultas po sobre el espacio ocupado por la base de datos y la simplicidad de las tablas.
