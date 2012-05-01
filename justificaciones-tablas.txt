@@ -1,1 +1,2 @@
 tablas
+En ciertos caso, algunas interrelaciones si bien pueden modelizarse (en el modelo relacional) con una tabla. Para ahorrar tablas, evitando mapear interrelaciones entre entidades donde aparezca cardinalidad (1,1) o bien (0,1). Simplemente en una de las tablas que representan entidades se coloca un atributo con el identificador de otra entidad, el cual actúa como clave foránea
