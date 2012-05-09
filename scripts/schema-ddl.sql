@@ -75,6 +75,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`tipo_procedimiento_medico` (
   `codigo_procedimiento_medico` INT NOT NULL ,
   `nombre` VARCHAR(100) NOT NULL ,
   `duracion` INT NOT NULL ,
+  `tecnica` VARCHAR(100) NOT NULL ,
+  `precio` DOUBLE NOT NULL ,
   PRIMARY KEY (`codigo_procedimiento_medico`) )
 ENGINE = InnoDB;
 
@@ -131,18 +133,17 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`facturacion` (
   `nro_plan` INT NOT NULL ,
   PRIMARY KEY (`nro_facturacion`) ,
   INDEX `fk_nro_indicacion` (`nro_indicacion` ASC) ,
---  INDEX `fk_cod_entidad_nro_plan` (`cod_entidad` ASC, `nro_plan` ASC) ,
+  INDEX `fk_cod_entidad_nro_plan` (`cod_entidad` ASC, `nro_plan` ASC) ,
   CONSTRAINT `fk_nro_indicacion`
     FOREIGN KEY (`nro_indicacion` )
     REFERENCES `grupo4`.`indicacion_medica` (`nro_indicacion` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-/*,
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_cod_entidad_nro_plan`
     FOREIGN KEY (`cod_entidad` , `nro_plan` )
     REFERENCES `grupo4`.`plan_de_cobertura` (`cod_entidad` , `numero_plan` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION*/)
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -210,20 +211,17 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`tiene` (
   `nro_afiliado` INT NOT NULL ,
   PRIMARY KEY (`id_paciente`, `cod_entidad`, `nro_plan`) ,
   INDEX `fk_id_paciente_tiene` (`id_paciente` ASC) ,
---  INDEX `fk_cod_entidad_nro_plan_tiene` (`nro_plan` ASC, `cod_entidad` ASC) ,
+  INDEX `fk_cod_entidad_nro_plan_tiene` (`nro_plan` ASC, `cod_entidad` ASC) ,
   CONSTRAINT `fk_id_paciente_tiene`
     FOREIGN KEY (`id_paciente` )
     REFERENCES `grupo4`.`paciente` (`id_paciente` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-/*
-,
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_cod_entidad_nro_plan_tiene`
     FOREIGN KEY (`nro_plan` , `cod_entidad` )
     REFERENCES `grupo4`.`plan_de_cobertura` (`numero_plan` , `cod_entidad` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-*/)
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -233,28 +231,23 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `grupo4`.`cubre` (
   `cod_cpt` INT NOT NULL ,
   `cod_entidad` INT NOT NULL ,
-  `nro_plan` INT NOT NULL ,
+  `fk_nro_plan_cubre` INT NOT NULL ,
   `autorizacion` VARCHAR(100) NOT NULL ,
   `bono` DOUBLE NOT NULL ,
   `monto_copago` DOUBLE NOT NULL ,
-  PRIMARY KEY (`cod_cpt`, `cod_entidad`, `nro_plan`) ,
+  PRIMARY KEY (`cod_cpt`, `cod_entidad`, `fk_nro_plan_cubre`) ,
   INDEX `fk_cod_cpt_cubre` (`cod_cpt` ASC) ,
---  INDEX `fk_cod_entidad_nro_plan_cubre` (`nro_plan` ASC, `cod_entidad` ASC) ,
-
+  INDEX `fk_cod_entidad_nro_plan_cubre` (`fk_nro_plan_cubre` ASC, `cod_entidad` ASC) ,
   CONSTRAINT `fk_cod_cpt_cubre`
     FOREIGN KEY (`cod_cpt` )
     REFERENCES `grupo4`.`tipo_procedimiento_medico` (`codigo_procedimiento_medico` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-/*
-,
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_cod_entidad_nro_plan_cubre`
-    FOREIGN KEY (`nro_plan` , `cod_entidad` )
+    FOREIGN KEY (`fk_nro_plan_cubre` , `cod_entidad` )
     REFERENCES `grupo4`.`plan_de_cobertura` (`numero_plan` , `cod_entidad` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-*/
-)
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -361,6 +354,24 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`condiciones_necesarias` (
   CONSTRAINT `fk_codigo_condicion`
     FOREIGN KEY (`codigo_condicion` )
     REFERENCES `grupo4`.`condicion` (`codigo_condicion` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `grupo4`.`pago_paciente`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `grupo4`.`pago_paciente` (
+  `nro_indicacion` INT NOT NULL ,
+  `copago_cobrado` DOUBLE NOT NULL ,
+  `bono_recibido` DOUBLE NOT NULL ,
+  `autorizacion_recibida` VARCHAR(100) NOT NULL ,
+  PRIMARY KEY (`nro_indicacion`) ,
+  INDEX `fk_nro_indicacion_pago_paciente` (`nro_indicacion` ASC) ,
+  CONSTRAINT `fk_nro_indicacion_pago_paciente`
+    FOREIGN KEY (`nro_indicacion` )
+    REFERENCES `grupo4`.`indicacion_medica` (`nro_indicacion` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
