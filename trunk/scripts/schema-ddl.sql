@@ -369,6 +369,7 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`pago_paciente` (
   `autorizacion_recibida` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`nro_indicacion`) ,
   INDEX `fk_nro_indicacion_pago_paciente` (`nro_indicacion` ASC) ,
+  UNIQUE INDEX `nro_indicacion_UNIQUE` (`nro_indicacion` ASC) ,
   CONSTRAINT `fk_nro_indicacion_pago_paciente`
     FOREIGN KEY (`nro_indicacion` )
     REFERENCES `grupo4`.`indicacion_medica` (`nro_indicacion` )
