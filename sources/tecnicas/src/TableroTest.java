@@ -6,6 +6,6 @@ public class TableroTest extends TestCase{
 		Tablero tablero = new Tablero();
 		Casillero casilleroTablero = tablero.getCasillero(1,2);
 		Casillero casillero = new Casillero(1,2);
-		assertTrue(casillero.getI() == casilleroTablero.getI());
+		assertTrue(casillero.getFila() == casilleroTablero.getFila());
 	}
 }

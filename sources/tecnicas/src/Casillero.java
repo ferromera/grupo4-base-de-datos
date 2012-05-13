@@ -9,10 +9,10 @@ public class Casillero {
 		this.columna=j;
 		pieza =null;
 	}
-	public int getI() {
+	public int getFila() {
 		return fila;
 	}
-	public int getJ() {
+	public int getColumna() {
 		return columna;
 	}
 	public Pieza getPieza(){

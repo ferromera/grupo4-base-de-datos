@@ -17,4 +17,5 @@ public abstract class Pieza {
 	public boolean nuncaMovido(){
 		return nuncaMovido;
 	}
+	public abstract boolean amenazaA(Casillero casillero);
 }
