@@ -19,4 +19,14 @@ public class Tablero {
 		int numeroCasillero = (fila-1)*8+columna;
 		return casilleros.get(numeroCasillero);
 	}
+
+	public boolean hayJaque() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean hayJaqueMate() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
