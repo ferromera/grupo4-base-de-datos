@@ -35,4 +35,9 @@ public class Jugador {
 		
 	}
 
+	public void comer(Casillero casillero) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

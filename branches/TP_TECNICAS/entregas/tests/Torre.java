@@ -16,4 +16,9 @@ public class Torre implements Pieza {
 		return null;
 	}
 
+	public boolean amenazasA(Casillero casilleroPeonNegro) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

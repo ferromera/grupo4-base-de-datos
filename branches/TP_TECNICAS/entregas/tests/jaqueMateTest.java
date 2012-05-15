@@ -19,6 +19,7 @@ public class jaqueMateTest extends TestCase {
 		Reina reinaNegra = new Reina(tablero.getCasillero(Tablero.Fila.TRES,Tablero.Columna.C));
 		jugadorNegras.addPieza(reinaNegra);
 
+		//Se inicia la partida
 		Partida partida = new Partida(jugadorBlancas, jugadorNegras, tablero);
 		assertTrue(tablero.hayJaque());
 		assertFalse(tablero.hayJaqueMate());

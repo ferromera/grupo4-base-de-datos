@@ -18,6 +18,7 @@ public class CoronacionTest extends TestCase{
 		//Un casillero antes de poder coronar		
 		casilleroDeCoronacion = tablero.getCasillero(Tablero.Fila.OCHO, Tablero.Columna.G);
 		
+		//Se inicia la partida
 		partida = new Partida(jugadorBlancas, jugadorNegras, tablero);
 	}
 	

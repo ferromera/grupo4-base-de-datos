@@ -15,9 +15,10 @@ public class JaqueTest extends TestCase {
 		Rey reyBlanco = new Rey(casillero);
 		jugadorBlancas = new Jugador(reyBlanco);
 		
-		//6,1
 		Casillero casillero2 = tablero.getCasillero(Tablero.Fila.SEIS,Tablero.Columna.A);
 		Rey reyNegro = new Rey(casillero2);
+		
+		//Se inicia la partida
 		Partida partida = new Partida(jugadorBlancas, jugadorNegras, tablero);
 		assertFalse(tablero.hayJaque());
 	}
