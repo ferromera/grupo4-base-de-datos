@@ -11,4 +11,10 @@ public class Alfil implements Pieza {
 		return false;
 	}
 
+	@Override
+	public Casillero getCasillero() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

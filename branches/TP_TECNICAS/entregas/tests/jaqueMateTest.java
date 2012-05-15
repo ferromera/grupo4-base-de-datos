@@ -38,8 +38,5 @@ public class jaqueMateTest extends TestCase {
 		jugadorNegras.addPieza(reinaNegra2);
 		Partida partida = new Partida(jugadorBlancas, jugadorNegras, tablero);
 		assertTrue(tablero.hayJaqueMate());
-
 	}
-	
-	
 }
