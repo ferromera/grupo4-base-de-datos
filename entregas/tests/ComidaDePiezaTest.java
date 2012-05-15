@@ -23,8 +23,6 @@ public class EnroqueCortoTest extends TestCase{
 		casilleroReyBlanco = reyJugadorBlancas.getCasillero();
 		
 		jugadorBlancas.addPieza(torreJugadorBlancas);
-		
-		//Se inicia la partida
 		partida = new Partida(jugadorBlancas, jugadorNegras, tablero);
 	}
 	
