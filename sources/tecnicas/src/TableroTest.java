@@ -8,4 +8,5 @@ public class TableroTest extends TestCase{
 		Casillero casillero = new Casillero(1,2);
 		assertTrue(casillero.getFila() == casilleroTablero.getFila());
 	}
+
 }

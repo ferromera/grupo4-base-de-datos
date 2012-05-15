@@ -14,14 +14,11 @@ public class JugadorTest extends TestCase{
 		tablero = new Tablero();
 		Casillero casillero = tablero.getCasillero(8, 5);
 		rey = new Rey(casillero);
-		piezas = new ArrayList<Pieza>();
-		jugador = new Jugador(rey, piezas);
-		
+		jugador = new Jugador(rey);
 	}
 	public void testCreation(){
 
 		assertEquals(jugador.getRey(), rey);
-		assertEquals(jugador.getPiezas(),piezas);
 	}
 	public void testMover(){
 		
