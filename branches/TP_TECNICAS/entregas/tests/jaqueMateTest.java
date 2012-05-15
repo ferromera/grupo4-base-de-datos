@@ -12,10 +12,9 @@ public class jaqueMateTest extends TestCase {
 	}
 	
 	public void testNoHayJaqueMate(){
-		//3,3
 		Rey reyBlanco = new Rey (tablero.getCasillero(Tablero.Fila.TRES,Tablero.Columna.C));
 		jugadorBlancas = new Jugador(reyBlanco);
-		//8,8
+
 		Rey reyNegro = new Rey (tablero.getCasillero(Tablero.Fila.OCHO,Tablero.Columna.H));
 		Reina reinaNegra = new Reina(tablero.getCasillero(Tablero.Fila.TRES,Tablero.Columna.C));
 		jugadorNegras.addPieza(reinaNegra);
