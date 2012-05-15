@@ -15,22 +15,22 @@ public class Jugador {
 		return null;
 	}
 
-	public boolean amenazas(Casillero casilleroF1) {
+	public boolean amenazas(Casillero casillero) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public void enracarReyCon(Torre torreJugador1) {
+	public void enracarReyCon(Torre torre) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void addPieza(Pieza reinaNegra) {
+	public void addPieza(Pieza pieza) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void moverPieza(Rey reyJugadorBlancas, Casillero casilleroG1) {
+	public void moverPieza(Pieza pieza, Casillero casilleroG1) {
 		// TODO Auto-generated method stub
 		
 	}
