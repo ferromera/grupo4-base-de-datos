@@ -5,4 +5,9 @@ public class Partida {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Jugador jugadorActivo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -25,7 +25,12 @@ public class Jugador {
 		
 	}
 
-	public void addPieza(Reina reinaNegra) {
+	public void addPieza(Pieza reinaNegra) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void moverPieza(Rey reyJugadorBlancas, Casillero casilleroG1) {
 		// TODO Auto-generated method stub
 		
 	}
