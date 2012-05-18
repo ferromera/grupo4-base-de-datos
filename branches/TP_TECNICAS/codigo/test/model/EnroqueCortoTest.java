@@ -7,18 +7,19 @@ public class EnroqueCortoTest extends TestCase{
 	private Jugador jugadorNegras;
 	private Tablero tablero;
 	private Partida partida;
-	private Torre torreJugadorBlancas;
-	private MovimientoRey reyJugadorBlancas;
+	private Pieza torreJugadorBlancas;
+	private Pieza reyJugadorBlancas;
 	private Casillero casilleroTorreBlanca;
 	private Casillero casilleroReyBlanco;
 	
 	public void setUp(){
 		tablero = new Tablero();
 		
-		jugadorBlancas = new Jugador(new MovimientoRey(tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.D)));
-		jugadorNegras = new Jugador(new MovimientoRey(tablero.getCasillero(Tablero.Fila.OCHO, Tablero.Columna.D)));
+		jugadorBlancas = new Jugador(new Pieza(new MovimientoRey(), tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.D)));
+
+		jugadorNegras = new Jugador(new Pieza(new MovimientoRey(), tablero.getCasillero(Tablero.Fila.OCHO, Tablero.Columna.D)));
 		
-		torreJugadorBlancas = new Torre(tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.H));
+		torreJugadorBlancas = new Pieza(new MovimientoTorre(),tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.H));
 		reyJugadorBlancas = jugadorBlancas.getRey();
 		
 		casilleroTorreBlanca = torreJugadorBlancas.getCasillero();
@@ -57,7 +58,7 @@ public class EnroqueCortoTest extends TestCase{
 	
 	public void testEnroqueCortoNegativoPorCaminoDelReyAtacado(){
 		//Ubicamos un alfil en el casillero A7
-		jugadorNegras.addPieza(new MovimientoAlfil(tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.A)));
+		jugadorNegras.addPieza(new Pieza(new MovimientoAlfil(),tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.A)));
 				
 		//Primero juegan las blancas
 		assertEquals(jugadorBlancas,partida.jugadorActivo());

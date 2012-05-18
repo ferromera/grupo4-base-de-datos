@@ -14,11 +14,11 @@ public class JaqueTest extends TestCase {
 	
 	public void testNoHayJaque(){
 		Casillero casillero = tablero.getCasillero(Tablero.Fila.DOS,Tablero.Columna.A);
-		MovimientoRey reyBlanco = new MovimientoRey(casillero);
+		Pieza reyBlanco = new Pieza(new MovimientoRey(),casillero);
 		jugadorBlancas = new Jugador(reyBlanco);
 		
 		Casillero casillero2 = tablero.getCasillero(Tablero.Fila.SEIS,Tablero.Columna.A);
-		MovimientoRey reyNegro = new MovimientoRey(casillero2);
+		Pieza reyNegro = new Pieza(new MovimientoRey(),casillero2);
 		
 		//Se inicia la partida
 		Partida partida = new Partida(jugadorBlancas, jugadorNegras, tablero);
@@ -27,11 +27,13 @@ public class JaqueTest extends TestCase {
 	
 	
 	public void testHayJaque(){
-		MovimientoRey reyBlanco = new MovimientoRey(tablero.getCasillero(Tablero.Fila.TRES,Tablero.Columna.C));
+		Pieza reyBlanco = new Pieza(new MovimientoRey(),tablero.getCasillero(Tablero.Fila.TRES,Tablero.Columna.C));
+
 		jugadorBlancas = new Jugador(reyBlanco);
 		
-		MovimientoRey reyNegro = new MovimientoRey(tablero.getCasillero(Tablero.Fila.OCHO,Tablero.Columna.H));
-		MovimientoPiezaReina reinaNegra = new MovimientoPiezaReina(tablero.getCasillero(Tablero.Fila.TRES,Tablero.Columna.B));
+		Pieza reyNegro = new Pieza(new MovimientoRey(),tablero.getCasillero(Tablero.Fila.OCHO,Tablero.Columna.H));
+
+		Pieza reinaNegra = new Pieza(new MovimientoReina(),tablero.getCasillero(Tablero.Fila.TRES,Tablero.Columna.B));
 		jugadorNegras.addPieza(reinaNegra);
 
 		Partida partida = new Partida(jugadorBlancas, jugadorNegras, tablero);
