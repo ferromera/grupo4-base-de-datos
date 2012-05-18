@@ -33,11 +33,7 @@ public class ComidaDePiezaTest extends TestCase{
 	}
 	
 	public void testTorreBlancaSeComeAPeonNegroPositivo(){
-		//Primero juegan las blancas
-		assertEquals(jugadorBlancas,partida.jugadorActivo());
-
-		//Verificamos que realmente podamos comer al peon negro con la torre
-		assertTrue(torreJugadorBlancas.amenazasA(casilleroPeonNegro));
+		prepararTurnoParaTorreBlancaSeComeAPeonNegroPositivo();
 		
 		jugadorBlancas.comer(tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.A));
 		//tambien podria ser valido 
@@ -51,14 +47,11 @@ public class ComidaDePiezaTest extends TestCase{
 		Pieza peonComido = jugadorNegras.getPieza(Tablero.Fila.SIETE, Tablero.Columna.A);
 		assertNull(peonComido);
 	}
+
 	
 	@Test(expected = MovimientoInvalidoException.class)
 	public void testReyBlancoSeComePeonNegativoPorMovimientoInvalido(){
-		//Primero juegan las blancas
-		assertEquals(jugadorBlancas,partida.jugadorActivo());
-
-		//Verificamos que NO podemos comer al peon negro con el rey blanco
-		assertFalse(jugadorBlancas.getRey().amenazasA(casilleroPeonNegro));
+		prepararTurnoParaReyBlancoSeComePeonNegativoPorMovimientoInvalido();
 		
 		jugadorBlancas.comer(tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.A));
 		
@@ -68,5 +61,21 @@ public class ComidaDePiezaTest extends TestCase{
 		//Verificar que jugadorNegras aun tiene a su peon.
 		Pieza peonNoComido = jugadorNegras.getPieza(Tablero.Fila.SIETE, Tablero.Columna.A);
 		assertNotNull(peonNoComido);
+	}
+
+	private void prepararTurnoParaReyBlancoSeComePeonNegativoPorMovimientoInvalido() {
+		//Primero juegan las blancas
+		assertEquals(jugadorBlancas,partida.jugadorActivo());
+
+		//Verificamos que NO podemos comer al peon negro con el rey blanco
+		assertFalse(jugadorBlancas.getRey().amenazasA(casilleroPeonNegro));
+	}
+
+	private void prepararTurnoParaTorreBlancaSeComeAPeonNegroPositivo() {
+		//Primero juegan las blancas
+		assertEquals(jugadorBlancas,partida.jugadorActivo());
+		
+		//Verificamos que realmente podamos comer al peon negro con la torre
+		assertTrue(torreJugadorBlancas.amenazasA(casilleroPeonNegro));
 	}
 }
