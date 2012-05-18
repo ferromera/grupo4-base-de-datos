@@ -7,37 +7,52 @@ public class JaqueTest extends TestCase {
 	private Tablero tablero;
 	private Jugador jugadorBlancas;
 	private Jugador jugadorNegras;
+	private Pieza reyBlanco;
+	private Pieza reyNegro;
+	private Partida partida;
+	private Pieza reinaNegra;
+	private Casillero casilleroA2;
+	private Casillero casilleroA6;
+	
 	
 	public void setUp(){
 		tablero = new Tablero();
 	}
 	
 	public void testNoHayJaque(){
-		Casillero casillero = tablero.getCasillero(Tablero.Fila.DOS,Tablero.Columna.A);
-		Pieza reyBlanco = new Pieza(new MovimientoRey(),casillero);
-		jugadorBlancas = new Jugador(reyBlanco);
-		
-		Casillero casillero2 = tablero.getCasillero(Tablero.Fila.SEIS,Tablero.Columna.A);
-		Pieza reyNegro = new Pieza(new MovimientoRey(),casillero2);
+		prepararTurnoParaNoHayJaque();
 		
 		//Se inicia la partida
-		Partida partida = new Partida(jugadorBlancas, jugadorNegras, tablero);
+		partida = new Partida(jugadorBlancas, jugadorNegras, tablero);
 		assertFalse(tablero.hayJaque());
 	}
-	
-	
+
 	public void testHayJaque(){
-		Pieza reyBlanco = new Pieza(new MovimientoRey(),tablero.getCasillero(Tablero.Fila.TRES,Tablero.Columna.C));
+		prepararTurnoParaHayJaque();
+
+		partida = new Partida(jugadorBlancas, jugadorNegras, tablero);
+		assertTrue(tablero.hayJaque());
+	}
+
+	private void prepararTurnoParaHayJaque() {
+		reyBlanco = new Pieza(new MovimientoRey(),tablero.getCasillero(Tablero.Fila.TRES,Tablero.Columna.C));
 
 		jugadorBlancas = new Jugador(reyBlanco);
 		
-		Pieza reyNegro = new Pieza(new MovimientoRey(),tablero.getCasillero(Tablero.Fila.OCHO,Tablero.Columna.H));
+		reyNegro = new Pieza(new MovimientoRey(),tablero.getCasillero(Tablero.Fila.OCHO,Tablero.Columna.H));
 
-		Pieza reinaNegra = new Pieza(new MovimientoReina(),tablero.getCasillero(Tablero.Fila.TRES,Tablero.Columna.B));
+		reinaNegra = new Pieza(new MovimientoReina(),tablero.getCasillero(Tablero.Fila.TRES,Tablero.Columna.B));
 		jugadorNegras.addPieza(reinaNegra);
-
-		Partida partida = new Partida(jugadorBlancas, jugadorNegras, tablero);
-		assertTrue(tablero.hayJaque());
+	}
+	
+	private void prepararTurnoParaNoHayJaque() {
+		casilleroA2 = tablero.getCasillero(Tablero.Fila.DOS,Tablero.Columna.A);
+		reyBlanco = new Pieza(new MovimientoRey(),casilleroA2);
+		jugadorBlancas = new Jugador(reyBlanco);
+		
+		casilleroA6 = tablero.getCasillero(Tablero.Fila.SEIS,Tablero.Columna.A);
+		reyNegro = new Pieza(new MovimientoRey(),casilleroA6);
+		jugadorNegras = new Jugador(reyNegro);
 	}
 	
 }
