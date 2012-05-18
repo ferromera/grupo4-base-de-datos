@@ -7,16 +7,16 @@ public class CoronacionTest extends TestCase{
 	private Jugador jugadorNegras;
 	private Tablero tablero;
 	private Partida partida;
-	private Peon peonJugadorBlancas;
+	private Pieza peonJugadorBlancas;
 	private Casillero casilleroDeCoronacion;
 
 	
 	public void setUp(){
-		tablero = new Tablero();
+		tablero = new Tablero();		
 		
-		jugadorBlancas = new Jugador(new MovimientoRey(tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.D)));
-		jugadorNegras = new Jugador(new MovimientoRey(tablero.getCasillero(Tablero.Fila.OCHO, Tablero.Columna.D)));
-		
+		jugadorBlancas = new Jugador(new Pieza(new MovimientoRey(), tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.D)));
+		jugadorNegras = new Jugador(new Pieza(new MovimientoRey(), tablero.getCasillero(Tablero.Fila.OCHO, Tablero.Columna.D)));
+
 		//Un casillero antes de poder coronar		
 		casilleroDeCoronacion = tablero.getCasillero(Tablero.Fila.OCHO, Tablero.Columna.G);
 		
@@ -25,7 +25,8 @@ public class CoronacionTest extends TestCase{
 	}
 	
 	public void testEnroqueCortoPositivo(){
-		peonJugadorBlancas = new Peon(tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.G));
+		peonJugadorBlancas = new Pieza(new MovimientoPeon(), tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.G));
+
 		jugadorBlancas.addPieza(peonJugadorBlancas);
 		
 		//Primero juegan las blancas
@@ -37,14 +38,15 @@ public class CoronacionTest extends TestCase{
 
 		//Como no hubo una exception durante el casteo el peon se cambio adecuadamente por una reina.
 		//El casteo se hace unicamente en este test para probar que efectivamente cambio el tipo de pieza. 
-		MovimientoPiezaReina piezaCoronada = (MovimientoPiezaReina)jugadorBlancas.getPieza(Tablero.Fila.OCHO, Tablero.Columna.G);
+		Pieza piezaCoronada = jugadorBlancas.getPieza(Tablero.Fila.OCHO, Tablero.Columna.G);
 		
 		assertNotNull(piezaCoronada);
 		assertEquals(piezaCoronada.getCasillero(), casilleroDeCoronacion);
 	}
 	
 	public void testCoronacionNegativaPorTodaviaNoEraLaUltimaFila(){
-		peonJugadorBlancas = new Peon(tablero.getCasillero(Tablero.Fila.SEIS, Tablero.Columna.G));
+		peonJugadorBlancas = new Pieza(new MovimientoPeon(), tablero.getCasillero(Tablero.Fila.SEIS, Tablero.Columna.G));
+		
 		Casillero casilleroPeonDestino = tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.G);
 		
 		jugadorBlancas.addPieza(peonJugadorBlancas);

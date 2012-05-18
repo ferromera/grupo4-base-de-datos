@@ -1,6 +1,6 @@
 package model;
-import junit.framework.TestCase;
 
+import junit.framework.TestCase;
 
 import org.junit.Test;
 
