@@ -9,7 +9,7 @@ public class CoronacionTest extends TestCase{
 	private Partida partida;
 	private Pieza peonJugadorBlancas;
 	private Casillero casilleroDeCoronacion;
-
+	private Casillero casilleroG6;
 	
 	public void setUp(){
 		tablero = new Tablero();		
@@ -25,12 +25,7 @@ public class CoronacionTest extends TestCase{
 	}
 	
 	public void testEnroqueCortoPositivo(){
-		peonJugadorBlancas = new Pieza(new MovimientoPeon(), tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.G));
-
-		jugadorBlancas.addPieza(peonJugadorBlancas);
-		
-		//Primero juegan las blancas
-		assertEquals(jugadorBlancas,partida.jugadorActivo());
+		prepararTurnoParaEnroqueCortoPositivo();
 		
 		//El jugador que tiene las piezas negras solo conserva al rey. Como 
 		//la pieza llega a la ultima fila se corona
@@ -43,22 +38,37 @@ public class CoronacionTest extends TestCase{
 		assertNotNull(piezaCoronada);
 		assertEquals(piezaCoronada.getCasillero(), casilleroDeCoronacion);
 	}
+
 	
 	public void testCoronacionNegativaPorTodaviaNoEraLaUltimaFila(){
-		peonJugadorBlancas = new Pieza(new MovimientoPeon(), tablero.getCasillero(Tablero.Fila.SEIS, Tablero.Columna.G));
-		
-		Casillero casilleroPeonDestino = tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.G);
-		
-		jugadorBlancas.addPieza(peonJugadorBlancas);
+		prepararTurnoParaCoronacionNegativaPorNoEraUltimaFila();
 		
 		//Primero juegan las blancas
 		assertEquals(jugadorBlancas,partida.jugadorActivo());
 		
 		//El jugador que tiene las piezas negras solo conserva al rey. Como 
 		//la pieza NO llega a la ultima fila y por lo tanto no ocurre la coronacion
-		jugadorBlancas.moverPieza(peonJugadorBlancas, casilleroPeonDestino);
+		jugadorBlancas.moverPieza(peonJugadorBlancas, casilleroG6);
 		
-		assertEquals(peonJugadorBlancas.getCasillero(), casilleroPeonDestino);	
+		assertEquals(peonJugadorBlancas.getCasillero(), casilleroG6);	
+	}
+	
+
+	private void prepararTurnoParaCoronacionNegativaPorNoEraUltimaFila() {
+		peonJugadorBlancas = new Pieza(new MovimientoPeon(), tablero.getCasillero(Tablero.Fila.SEIS, Tablero.Columna.G));
+		
+		casilleroG6 = tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.G);
+		
+		jugadorBlancas.addPieza(peonJugadorBlancas);
+	}
+
+	private void prepararTurnoParaEnroqueCortoPositivo() {
+		peonJugadorBlancas = new Pieza(new MovimientoPeon(), tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.G));
+		
+		jugadorBlancas.addPieza(peonJugadorBlancas);
+		
+		//Primero juegan las blancas
+		assertEquals(jugadorBlancas,partida.jugadorActivo());
 	}
 }
 

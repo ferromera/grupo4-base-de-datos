@@ -11,6 +11,7 @@ public class EnroqueCortoTest extends TestCase{
 	private Pieza reyJugadorBlancas;
 	private Casillero casilleroTorreBlanca;
 	private Casillero casilleroReyBlanco;
+	private Casillero casilleroG1;
 	
 	public void setUp(){
 		tablero = new Tablero();
@@ -32,19 +33,7 @@ public class EnroqueCortoTest extends TestCase{
 	}
 	
 	public void testEnroqueCortoPositivo(){
-		//Primero juegan las blancas
-		assertEquals(jugadorBlancas,partida.jugadorActivo());
-		
-		assertTrue(reyJugadorBlancas.nuncaMovida());
-		assertTrue(torreJugadorBlancas.nuncaMovida());
-			
-		//En el enroque corte el rey pasa por los casilleros F1, G1. Se debe verificar que ninguno de esos casilleros 
-		//este atacado por otra pieza de un jugador2.
-		Casillero casilleroF1 = tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.F);
-		Casillero casilleroG1 = tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.G);
-		
-		assertFalse(jugadorNegras.amenazas(casilleroF1));
-		assertFalse(jugadorNegras.amenazas(casilleroG1));
+		prepararTurnoParaEnroqueCortoPositivo();
 		
 		jugadorBlancas.enracarReyCon(torreJugadorBlancas);
 		
@@ -55,18 +44,10 @@ public class EnroqueCortoTest extends TestCase{
 		assertEquals(torreJugadorBlancas.getCasillero().getFila(), casilleroTorreBlanca.getFila());
 		assertEquals(torreJugadorBlancas.getCasillero().getColumna(), casilleroTorreBlanca.getColumna());		
 	}
+
 	
 	public void testEnroqueCortoNegativoPorCaminoDelReyAtacado(){
-		//Ubicamos un alfil en el casillero A7
-		jugadorNegras.addPieza(new Pieza(new MovimientoAlfil(),tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.A)));
-				
-		//Primero juegan las blancas
-		assertEquals(jugadorBlancas,partida.jugadorActivo());
-		
-		Casillero casilleroG1 = tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.G); 
-		
-		//El alfil negro amenaza un casillero por el que debe pasar el rey
-		assertTrue(jugadorNegras.amenazas(casilleroG1));
+		prepararTurnoParaEnroqueCortoNegativoPorCaminoDelReyAtacado();
 		
 		jugadorBlancas.enracarReyCon(torreJugadorBlancas);
 		
@@ -76,17 +57,10 @@ public class EnroqueCortoTest extends TestCase{
 		//Verificar que la torre no se movio.
 		assertEquals(torreJugadorBlancas.getCasillero(), casilleroTorreBlanca);		
 	}
+
 	
 	public void testEnroqueCortoNegativoPorReyMovido(){
-		Casillero casilleroG1 = tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.G); 
-
-		jugadorBlancas.moverPieza(reyJugadorBlancas,casilleroG1);
-		
-		//Primero juegan las blancas
-		assertEquals(jugadorBlancas,partida.jugadorActivo());
-		
-		assertFalse(reyJugadorBlancas.nuncaMovida());
-		assertTrue(torreJugadorBlancas.nuncaMovida());
+		prepararTurnoParaEnroqueCortoNegativoPorReyMovido();
 		
 		jugadorBlancas.enracarReyCon(torreJugadorBlancas);
 		
@@ -96,9 +70,22 @@ public class EnroqueCortoTest extends TestCase{
 		//Verificar que la torre no se movio.
 		assertEquals(torreJugadorBlancas.getCasillero(), casilleroTorreBlanca);		
 	}
+
 	
 	public void testEnroqueCortoNegativoPorTorreMovida(){
-		Casillero casilleroG1 = tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.G); 
+		prepararTurnoParaEnroqueCortoNegativoPorTorreMovida();
+		
+		jugadorBlancas.enracarReyCon(torreJugadorBlancas);
+		
+		//El rey no se mueve porque el enroque no es posible.
+		assertEquals(reyJugadorBlancas.getCasillero(), casilleroReyBlanco);
+		
+		//Verificar que la torre no se movio.
+		assertEquals(torreJugadorBlancas.getCasillero(), casilleroTorreBlanca);		
+	}
+
+	private void prepararTurnoParaEnroqueCortoNegativoPorTorreMovida() {
+		casilleroG1 = tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.G); 
 
 		jugadorBlancas.moverPieza(reyJugadorBlancas,casilleroG1);
 		
@@ -107,13 +94,46 @@ public class EnroqueCortoTest extends TestCase{
 		
 		assertTrue(reyJugadorBlancas.nuncaMovida());
 		assertFalse(torreJugadorBlancas.nuncaMovida());
+	}
+	
+	private void prepararTurnoParaEnroqueCortoNegativoPorReyMovido() {
+		casilleroG1 = tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.G); 
+
+		jugadorBlancas.moverPieza(reyJugadorBlancas,casilleroG1);
 		
-		jugadorBlancas.enracarReyCon(torreJugadorBlancas);
+		//Primero juegan las blancas
+		assertEquals(jugadorBlancas,partida.jugadorActivo());
 		
-		//El rey no se mueve porque el enroque no es posible.
-		assertEquals(reyJugadorBlancas.getCasillero(), casilleroReyBlanco);
+		assertFalse(reyJugadorBlancas.nuncaMovida());
+		assertTrue(torreJugadorBlancas.nuncaMovida());
+	}
+
+	private void prepararTurnoParaEnroqueCortoNegativoPorCaminoDelReyAtacado() {
+		//Ubicamos un alfil en el casillero A7
+		jugadorNegras.addPieza(new Pieza(new MovimientoAlfil(),tablero.getCasillero(Tablero.Fila.SIETE, Tablero.Columna.A)));
 		
-		//Verificar que la torre no se movio.
-		assertEquals(torreJugadorBlancas.getCasillero(), casilleroTorreBlanca);		
+		//Primero juegan las blancas
+		assertEquals(jugadorBlancas,partida.jugadorActivo());
+		
+		Casillero casilleroG1 = tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.G); 
+		
+		//El alfil negro amenaza un casillero por el que debe pasar el rey
+		assertTrue(jugadorNegras.amenazas(casilleroG1));
+	}
+
+	private void prepararTurnoParaEnroqueCortoPositivo() {
+		//Primero juegan las blancas
+		assertEquals(jugadorBlancas,partida.jugadorActivo());
+		
+		assertTrue(reyJugadorBlancas.nuncaMovida());
+		assertTrue(torreJugadorBlancas.nuncaMovida());
+		
+		//En el enroque corte el rey pasa por los casilleros F1, G1. Se debe verificar que ninguno de esos casilleros 
+		//este atacado por otra pieza de un jugador2.
+		Casillero casilleroF1 = tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.F);
+		Casillero casilleroG1 = tablero.getCasillero(Tablero.Fila.UNO, Tablero.Columna.G);
+		
+		assertFalse(jugadorNegras.amenazas(casilleroF1));
+		assertFalse(jugadorNegras.amenazas(casilleroG1));
 	}
 }
