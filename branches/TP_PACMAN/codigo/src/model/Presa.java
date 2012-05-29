@@ -1,8 +1,6 @@
 package model;
 
 public class Presa extends Estado {
-	private static final int TIEMPO_PRESA = 20;
-
 	public Presa(Fantasma fantasma) {
 		super(fantasma);
 		System.out.println("Fantasma Presa");
@@ -12,7 +10,7 @@ public class Presa extends Estado {
 	public void pasaronSegundos(int segundos) {
 		this.segundosTranscurridos += segundos;
 
-		if (this.segundosTranscurridos >= TIEMPO_PRESA) {
+		if (this.segundosTranscurridos >= ContextConfiguration.PERIODO_DE_PRESA) {
 			this.fantasma.setEstado(new Cazador(this.fantasma));
 		}
 	}

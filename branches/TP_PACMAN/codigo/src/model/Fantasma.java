@@ -1,10 +1,14 @@
 package model;
 
+import helpers.LoggerHelper;
+
 public class Fantasma {
 	private Estado estado;
+	private LoggerHelper logger;
 	
 	public Fantasma (){
 		this.estado = new Cazador(this);
+		this.logger = new LoggerHelper("fantasma");
 	}
 	
 	public void esComido(){
@@ -21,6 +25,7 @@ public class Fantasma {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+		this.logger.log("Cambio de estado a: " + estado);
 	}
 	
 	@Override
