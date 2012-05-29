@@ -22,4 +22,9 @@ public class Fantasma {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
+	
+	@Override
+	public String toString() {
+		return this.estado.toString();
+	}
 }
