@@ -24,4 +24,8 @@ public class Cazador extends Estado {
 		System.out.println("Soy cazador y me muevo con nivel de agresividad "+ this.nivelDeAgresividad);				
 	}
 
+	@Override
+	public String toString() {
+		return "Fantasma cazador con agresividad "+ this.nivelDeAgresividad;
+	}
 }

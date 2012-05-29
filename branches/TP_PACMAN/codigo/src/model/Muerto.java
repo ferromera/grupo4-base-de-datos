@@ -27,4 +27,8 @@ public class Muerto extends Estado {
 		System.out.println("Estoy muerto, no me puedo mover");				
 	}
 
+	@Override
+	public String toString() {
+		return "Fantasma Muerto";
+	}
 }

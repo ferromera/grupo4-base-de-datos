@@ -26,5 +26,10 @@ public class Presa extends Estado {
 	public void mover() {
 		System.out.println("Soy presa y me escapo");
 	}
+	
+	@Override
+	public String toString() {
+		return "Fantasma Presa";
+	}
 
 }
