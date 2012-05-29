@@ -18,6 +18,7 @@ public class Presa extends Estado {
 	@Override
 	public void esComido() {
 		System.out.println("Soy presa y me comiste");
+		this.fantasma.setEstado(new Muerto(this.fantasma));
 	}
 
 	@Override
