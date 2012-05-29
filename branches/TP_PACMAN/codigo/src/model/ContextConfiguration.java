@@ -15,8 +15,8 @@ public class ContextConfiguration {
 			properties = new Properties();
 			properties.load(new FileInputStream("pacman.properties"));
             
-			ContextConfiguration.MAXIMO_NIVEL_AGRESIVIDAD = Integer.parseInt(properties.getProperty("periodoMuerte"));
-			ContextConfiguration.PERIODO_DE_PRESA = Integer.parseInt(properties.getProperty("periodoMuerte"));
+			ContextConfiguration.MAXIMO_NIVEL_AGRESIVIDAD = Integer.parseInt(properties.getProperty("maximoNivelAgresividad"));
+			ContextConfiguration.PERIODO_DE_PRESA = Integer.parseInt(properties.getProperty("periodoPresa"));
 			ContextConfiguration.PERIODO_DE_MUERTO = Integer.parseInt(properties.getProperty("periodoMuerte"));
 		} catch (IOException e) {
 			e.printStackTrace();
