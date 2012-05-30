@@ -1,0 +1,10 @@
+/*
+Paciente			
+TipoDoc	NumeroDoc	Nombre	Apellido
+*/
+INSERT INTO PACIENTE VALUES('DNI','11111111','Arnaldo','Andre');
+INSERT INTO PACIENTE VALUES('DNI','22222222','Beatriz','Bordo');
+INSERT INTO PACIENTE VALUES('DNI','33333333','Carlos','Cascia');
+INSERT INTO PACIENTE VALUES('LC','44444444','Denis','Derek');
+INSERT INTO PACIENTE VALUES('DNI','55555555','Edgar','Egar');
+INSERT INTO PACIENTE VALUES('DNI','66666666','Fernando','Fernandez');
