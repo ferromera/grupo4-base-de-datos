@@ -29,4 +29,9 @@ public class Muerto extends Estado {
 	public String toString() {
 		return "Fantasma Muerto";
 	}
+
+	@Override
+	public void iniciaPowerPellet() {
+		System.out.println("Estoy Muerto, no me importa");
+	}
 }

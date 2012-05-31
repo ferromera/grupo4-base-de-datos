@@ -32,4 +32,12 @@ public class Fantasma {
 	public String toString() {
 		return this.estado.toString();
 	}
+
+	public Estado getEstado() {
+		return this.estado;
+	}
+	public void iniciaPowerPellet(){
+		this.estado.iniciaPowerPellet();
+	}
+	
 }

@@ -11,8 +11,10 @@ public class Cazador extends Estado {
 	@Override
 	public void pasaronSegundos(int segundos) {
 		// Aumentar grado de agresividad con el paso del tiempo.
-		if(this.nivelDeAgresividad < ContextConfiguration.MAXIMO_NIVEL_AGRESIVIDAD)
-			this.nivelDeAgresividad++;
+		if(this.nivelDeAgresividad+segundos < ContextConfiguration.MAXIMO_NIVEL_AGRESIVIDAD)
+			this.nivelDeAgresividad+=segundos;
+		else
+			this.nivelDeAgresividad=ContextConfiguration.MAXIMO_NIVEL_AGRESIVIDAD;
 	}
 
 	@Override
@@ -29,5 +31,14 @@ public class Cazador extends Estado {
 	@Override
 	public String toString() {
 		return "Fantasma cazador con agresividad " + this.nivelDeAgresividad;
+	}
+
+	public int getNivelDeAgresividad() {
+		return this.nivelDeAgresividad;
+	}
+
+	@Override
+	public void iniciaPowerPellet() {
+		this.fantasma.setEstado(new Presa(this.fantasma));
 	}
 }
