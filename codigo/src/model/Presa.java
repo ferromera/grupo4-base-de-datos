@@ -1,8 +1,10 @@
 package model;
 
 public class Presa extends Estado {
+	private Cazador estadoAnterior;
 	public Presa(Fantasma fantasma) {
 		super(fantasma);
+		this.estadoAnterior= (Cazador)fantasma.getEstado();
 		System.out.println("Fantasma Presa");
 	}
 
@@ -11,7 +13,7 @@ public class Presa extends Estado {
 		this.segundosTranscurridos += segundos;
 
 		if (this.segundosTranscurridos >= ContextConfiguration.PERIODO_DE_PRESA) {
-			this.fantasma.setEstado(new Cazador(this.fantasma));
+			this.fantasma.setEstado(this.estadoAnterior);
 		}
 	}
 
@@ -29,6 +31,11 @@ public class Presa extends Estado {
 	@Override
 	public String toString() {
 		return "Fantasma Presa";
+	}
+
+	@Override
+	public void iniciaPowerPellet() {
+		this.segundosTranscurridos=0;
 	}
 
 }
