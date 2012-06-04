@@ -11,7 +11,8 @@ USE `grupo4` ;
 CREATE  TABLE IF NOT EXISTS `grupo4`.`entidad_financiera` (
   `cod_entidad` INT NOT NULL ,
   `nombre` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`cod_entidad`) )
+  CONSTRAINT `pk_entidad_financiera`
+    PRIMARY KEY (`cod_entidad`) )
 ENGINE = InnoDB;
 
 
@@ -22,7 +23,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`plan_de_cobertura` (
   `cod_entidad` INT NOT NULL ,
   `numero_plan` INT NOT NULL ,
   `nombre` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`cod_entidad`, `numero_plan`) ,
+  CONSTRAINT `pk_plan_cobertura`
+    PRIMARY KEY (`numero_plan`, `cod_entidad`) ,
   INDEX `fk_cod_entidad` (`cod_entidad` ASC) ,
   CONSTRAINT `fk_cod_entidad`
     FOREIGN KEY (`cod_entidad` )
@@ -37,8 +39,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `grupo4`.`facturacion` (
   `nro_facturacion` INT NOT NULL ,
-  `fecha` DOUBLE NOT NULL ,
-  PRIMARY KEY (`nro_facturacion`) )
+  `fecha` DATE NOT NULL ,
+  `monto_total` INT NOT NULL ,
+  CONSTRAINT `pk_facturacion`
+    PRIMARY KEY (`nro_facturacion`) )
 ENGINE = InnoDB;
 
 
@@ -49,7 +53,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`medico` (
   `matricula` INT NOT NULL ,
   `apellido` VARCHAR(100) NOT NULL ,
   `nombre` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`matricula`) )
+  CONSTRAINT `pk_medico`  
+    PRIMARY KEY (`matricula`) )
 ENGINE = InnoDB;
 
 
@@ -64,7 +69,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`paciente` (
   `tipo_documento` VARCHAR(100) NOT NULL ,
   `nro_documento` INT NOT NULL ,
   `condicion_iva` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`id_paciente`) )
+  CONSTRAINT `pk_paciente`
+    PRIMARY KEY (`id_paciente`) )
 ENGINE = InnoDB;
 
 
@@ -74,7 +80,8 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `grupo4`.`solicitud_tentativa` (
   `nro_solicitud` INT NOT NULL COMMENT '	' ,
   `estado` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`nro_solicitud`) )
+  CONSTRAINT `pk_solicitud`
+    PRIMARY KEY (`nro_solicitud`) )
 ENGINE = InnoDB;
 
 
@@ -87,7 +94,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`tipo_procedimiento_medico` (
   `duracion` INT NOT NULL ,
   `tecnica` VARCHAR(100) NOT NULL ,
   `precio` DOUBLE NOT NULL ,
-  PRIMARY KEY (`codigo_procedimiento_medico`) )
+  CONSTRAINT `pk_procedimiento_medico`
+    PRIMARY KEY (`codigo_procedimiento_medico`) )
 ENGINE = InnoDB;
 
 
@@ -106,7 +114,10 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`indicacion_medica` (
   `cod_cpt` INT NOT NULL ,
   `cod_entidad` INT NOT NULL ,
   `nro_plan` INT NOT NULL ,
-  PRIMARY KEY (`nro_indicacion`) ,
+  `consentimiento` TINYINT(1) NULL ,
+  `autorización` TINYINT(1) NULL ,
+  CONSTRAINT `pk_indicacion_medica`
+    PRIMARY KEY (`nro_indicacion`) ,
   INDEX `fk_matricula` (`matricula` ASC) ,
   INDEX `fk_id_paciente` (`id_paciente` ASC) ,
   INDEX `fk_nro_solicitud` (`nro_solicitud` ASC) ,
@@ -147,7 +158,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`historia_clinica` (
   `nro_historia` INT NOT NULL ,
   `datos_paciente` VARCHAR(100) NOT NULL ,
   `id_paciente` INT NOT NULL ,
-  PRIMARY KEY (`nro_historia`) ,
+  CONSTRAINT `pk_historia_clinica`
+    PRIMARY KEY (`nro_historia`) ,
   INDEX `fk_id_paciente_historia_clinica` (`id_paciente` ASC) ,
   CONSTRAINT `fk_id_paciente_historia_clinica`
     FOREIGN KEY (`id_paciente` )
@@ -166,7 +178,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`episodio` (
   `fecha_episodio` INT NOT NULL ,
   `descripcion_episodio` VARCHAR(100) NOT NULL ,
   `matricula` INT NOT NULL ,
-  PRIMARY KEY (`cod_episodio`, `nro_historia`) ,
+  CONSTRAINT `pk_episodio`
+    PRIMARY KEY (`cod_episodio`, `nro_historia`) ,
   INDEX `fk_nro_historia_episodio` (`nro_historia` ASC) ,
   INDEX `fk_matricula_episodio` (`matricula` ASC) ,
   CONSTRAINT `fk_nro_historia_episodio`
@@ -188,7 +201,8 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `grupo4`.`recurso` (
   `cod_recurso` INT NOT NULL ,
   `nombre_recurso` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`cod_recurso`) )
+  CONSTRAINT `pk_recurso`
+    PRIMARY KEY (`cod_recurso`) )
 ENGINE = InnoDB;
 
 
@@ -202,7 +216,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`tiene` (
   `tipo_extension` VARCHAR(100) NOT NULL ,
   `tipo_beneficiario` VARCHAR(100) NOT NULL ,
   `nro_afiliado` INT NOT NULL ,
-  PRIMARY KEY (`id_paciente`, `cod_entidad`, `nro_plan`) ,
+  CONSTRAINT `pk_tiene`
+    PRIMARY KEY (`id_paciente`, `nro_plan`, `cod_entidad`) ,
   INDEX `fk_id_paciente_tiene` (`id_paciente` ASC) ,
   INDEX `fk_cod_entidad_nro_plan_tiene` (`nro_plan` ASC, `cod_entidad` ASC) ,
   CONSTRAINT `fk_id_paciente_tiene`
@@ -228,7 +243,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`cubre` (
   `autorizacion` VARCHAR(100) NOT NULL ,
   `bono` DOUBLE NOT NULL ,
   `monto_copago` DOUBLE NOT NULL ,
-  PRIMARY KEY (`cod_cpt`, `cod_entidad`, `fk_nro_plan_cubre`) ,
+  CONSTRAINT `pk_cubre`
+    PRIMARY KEY (`cod_cpt`, `fk_nro_plan_cubre`, `cod_entidad`) ,
   INDEX `fk_cod_cpt_cubre` (`cod_cpt` ASC) ,
   INDEX `fk_cod_entidad_nro_plan_cubre` (`fk_nro_plan_cubre` ASC, `cod_entidad` ASC) ,
   CONSTRAINT `fk_cod_cpt_cubre`
@@ -250,7 +266,8 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `grupo4`.`requiere` (
   `cod_recurso` INT NOT NULL ,
   `nro_indicacion` INT NOT NULL ,
-  PRIMARY KEY (`cod_recurso`, `nro_indicacion`) ,
+  CONSTRAINT `pk_requiere`
+    PRIMARY KEY (`cod_recurso`, `nro_indicacion`) ,
   INDEX `fk_cod_recurso` (`cod_recurso` ASC) ,
   INDEX `fk_nro_indicacion_requiere` (`nro_indicacion` ASC) ,
   CONSTRAINT `fk_cod_recurso`
@@ -275,7 +292,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`quirofano` (
   `sector` VARCHAR(100) NOT NULL ,
   `hora_apertura` INT NOT NULL ,
   `hora_cierre` INT NOT NULL ,
-  PRIMARY KEY (`nro_quirofano`) )
+  CONSTRAINT `pk_quirofano`
+    PRIMARY KEY (`nro_quirofano`) )
 ENGINE = InnoDB;
 
 
@@ -290,7 +308,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`turno_anulado` (
   `fecha_fin` INT NOT NULL ,
   `hora_fin` INT NOT NULL ,
   `nro_solicitud` INT NOT NULL ,
-  PRIMARY KEY (`id_turno_anulado`) ,
+  CONSTRAINT `pk_turno_anulado`
+    PRIMARY KEY (`id_turno_anulado`) ,
   INDEX `fk_nro_quirofano` (`nro_quirofano` ASC) ,
   INDEX `fk_solicitud_turno_anulado` (`nro_solicitud` ASC) ,
   CONSTRAINT `fk_nro_quirofano`
@@ -316,7 +335,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`turno` (
   `hora_fin` INT NOT NULL ,
   `fecha_fin` INT NOT NULL ,
   `nro_solicitud` INT NOT NULL ,
-  PRIMARY KEY (`fecha_inicio`) ,
+  CONSTRAINT `pk_turno`
+    PRIMARY KEY (`fecha_inicio`, `nro_quirofano`, `hora_inicio`) ,
   INDEX `fk_nro_quirofano_turno` (`nro_quirofano` ASC) ,
   INDEX `fk_solicitud_turno` (`nro_solicitud` ASC) ,
   CONSTRAINT `fk_nro_quirofano_turno`
@@ -338,7 +358,8 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `grupo4`.`condicion` (
   `codigo_condicion` INT NOT NULL ,
   `descripcion` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`codigo_condicion`) )
+  CONSTRAINT `pk_condicion`
+    PRIMARY KEY (`codigo_condicion`) )
 ENGINE = InnoDB;
 
 
@@ -348,7 +369,8 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `grupo4`.`condiciones_necesarias` (
   `codigo_procedimiento_medico` INT NOT NULL ,
   `codigo_condicion` INT NOT NULL ,
-  PRIMARY KEY (`codigo_procedimiento_medico`, `codigo_condicion`) ,
+  CONSTRAINT `pk_condiciones_necesarias`
+    PRIMARY KEY (`codigo_procedimiento_medico`, `codigo_condicion`) ,
   INDEX `fk_codigo_procedimiento_medico` (`codigo_procedimiento_medico` ASC) ,
   INDEX `fk_codigo_condicion` (`codigo_condicion` ASC) ,
   CONSTRAINT `fk_codigo_procedimiento_medico`
@@ -371,8 +393,8 @@ CREATE  TABLE IF NOT EXISTS `grupo4`.`pago_paciente` (
   `nro_indicacion` INT NOT NULL ,
   `copago_cobrado` DOUBLE NOT NULL ,
   `bono_recibido` DOUBLE NOT NULL ,
-  `autorizacion_recibida` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`nro_indicacion`) ,
+  CONSTRAINT `pk_pago_paciente`
+    PRIMARY KEY (`nro_indicacion`) ,
   INDEX `fk_nro_indicacion_pago_paciente` (`nro_indicacion` ASC) ,
   CONSTRAINT `fk_nro_indicacion_pago_paciente`
     FOREIGN KEY (`nro_indicacion` )
@@ -383,13 +405,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `grupo4`.`factura`
+-- Table `grupo4`.`detalle_factura`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `grupo4`.`factura` (
+CREATE  TABLE IF NOT EXISTS `grupo4`.`detalle_factura` (
   `nro_facturacion` INT NOT NULL ,
   `nro_indicacion` INT NOT NULL ,
   `monto` INT NOT NULL ,
-  PRIMARY KEY (`nro_facturacion`, `nro_indicacion`) ,
+  `nro_item` INT NOT NULL ,
+  `fecha` DATE NOT NULL ,
+  CONSTRAINT `pk_detalle_factura`
+    PRIMARY KEY (`nro_facturacion`, `nro_item`) ,
   INDEX `fk_nro_indicacion_factura` (`nro_indicacion` ASC) ,
   INDEX `fk_nro_facturacion_factura` (`nro_facturacion` ASC) ,
   CONSTRAINT `fk_nro_indicacion_factura`
