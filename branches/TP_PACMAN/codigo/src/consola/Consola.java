@@ -37,7 +37,7 @@ public class Consola {
 		
 		do{
 			
-			System.out.print("Opci—n: ");
+			System.out.print("Opcion: ");
 			op = input.nextInt();	
 			
 			System.out.println("");

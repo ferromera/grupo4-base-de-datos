@@ -1,0 +1,11 @@
+# Estas instrucciones se encuentran en mayor detalle dentro del informe
+# En una terminal
+
+$ tar -zxvf TP2_GRUPO_6_zip.zip
+$ cd TP2_GRUPO_6_zip
+$ cd codigo
+$ ant
+$ cp pacman.properties bin
+$ cd bin
+$ java consola/Consola
+
