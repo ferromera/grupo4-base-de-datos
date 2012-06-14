@@ -8,12 +8,11 @@ import model.Muerto;
 import model.Presa;
 
 public class testFantasma extends TestCase{
-	private ContextConfiguration ctx;
+	private ContextConfiguration ctx = new ContextConfiguration();
 	private Fantasma fantasma;
 	
 	@Override
 	protected void setUp(){
-		ctx = new ContextConfiguration();
 		fantasma = new Fantasma();
 	}
 	
