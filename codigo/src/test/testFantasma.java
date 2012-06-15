@@ -3,6 +3,7 @@ package test;
 import junit.framework.TestCase;
 import model.Cazador;
 import model.ContextConfiguration;
+import model.Eslabon;
 import model.Fantasma;
 import model.Muerto;
 import model.Pacman;
@@ -12,11 +13,13 @@ public class testFantasma extends TestCase{
 	private ContextConfiguration ctx = new ContextConfiguration();
 	private Fantasma fantasma;
 	private Pacman pacman;
+	private Eslabon eslabon;
 	
 	@Override
 	protected void setUp(){
-		fantasma = new Fantasma();
-		pacman = new Pacman();
+		eslabon = new Eslabon(1,1);
+		fantasma = new Fantasma(eslabon);
+		pacman = new Pacman(eslabon);
 	}
 	
 	public void testCrearFantasma(){

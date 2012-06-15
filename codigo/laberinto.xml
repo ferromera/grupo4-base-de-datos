@@ -1,0 +1,11 @@
+<laberinto ancho="3" alto="3"  posicionInicialPacman="3" posicionSalidaFantasmas="1">
+	<eslabon id="1" fila="1" columna="1" comida="bolita" arriba="" abajo="4" izquierda="" derecha="2" />
+	<eslabon id="2" fila="1" columna="2" comida="bolita" arriba="" abajo="5" izquierda="1" derecha="3" />
+	<eslabon id="3" fila="1" columna="3" comida="bolita" arriba="" abajo="6" izquierda="2" derecha="" />
+	<eslabon id="4" fila="2" columna="1" comida="bolita" arriba="1" abajo="7" izquierda="" derecha="5" />
+	<eslabon id="5" fila="2" columna="2" comida="bolita" arriba="2" abajo="8" izquierda="4" derecha="6" />
+	<eslabon id="6" fila="2" columna="3" comida="bolita" arriba="3" abajo="9" izquierda="5" derecha="" />
+	<eslabon id="7" fila="3" columna="1" comida="bolita" arriba="4" abajo="" izquierda="" derecha="8" />
+	<eslabon id="8" fila="3" columna="2" comida="bolita" arriba="5" abajo="" izquierda="7" derecha="9" />
+	<eslabon id="9" fila="3" columna="3" comida="bolita" arriba="6" abajo="" izquierda="8" derecha="" />
+</laberinto>

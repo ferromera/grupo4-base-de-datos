@@ -9,5 +9,4 @@ public abstract class Punto implements Comible {
 	
 	@Override
 	abstract public void esComidoPor(Comible comible);
-
 }
