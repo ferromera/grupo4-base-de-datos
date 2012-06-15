@@ -5,15 +5,18 @@ import model.Cazador;
 import model.ContextConfiguration;
 import model.Fantasma;
 import model.Muerto;
+import model.Pacman;
 import model.Presa;
 
 public class testFantasma extends TestCase{
 	private ContextConfiguration ctx = new ContextConfiguration();
 	private Fantasma fantasma;
+	private Pacman pacman;
 	
 	@Override
 	protected void setUp(){
 		fantasma = new Fantasma();
+		pacman = new Pacman();
 	}
 	
 	public void testCrearFantasma(){
@@ -23,21 +26,21 @@ public class testFantasma extends TestCase{
 	}
 	
 	public void testNoPudeComerFantasmaPorqueEsCazador() {
-		fantasma.esComido();
+		fantasma.esComidoPor(pacman);
 		assertTrue(fantasma.getEstado() instanceof Cazador);
 	}
 	
 	public void testNoPudeComerFantasmaPorqueEstaMuerto() {
 		fantasma.iniciaPowerPellet();
-		fantasma.esComido();
+		fantasma.esComidoPor(pacman);
 		assertTrue(fantasma.getEstado() instanceof Muerto);
-		fantasma.esComido();
+		fantasma.esComidoPor(pacman);
 		assertTrue(fantasma.getEstado() instanceof Muerto);
 	}
 	
 	public void testPudeComerFantasma() {
 		fantasma.iniciaPowerPellet();
-		fantasma.esComido();
+		fantasma.esComidoPor(pacman);
 		assertTrue(fantasma.getEstado() instanceof Muerto);
 	}
 	
@@ -48,7 +51,7 @@ public class testFantasma extends TestCase{
 	
 	public void testConvertirEnPresaInvalidoPorMuerto(){
 		fantasma.iniciaPowerPellet();
-		fantasma.esComido();
+		fantasma.esComidoPor(pacman);
 		fantasma.iniciaPowerPellet();
 		assertFalse(fantasma.getEstado() instanceof Presa);
 	}
@@ -73,7 +76,7 @@ public class testFantasma extends TestCase{
 	}
 	public void testDeMuertoACazadorOKPorTiempoCumplido(){
 		fantasma.iniciaPowerPellet();
-		fantasma.esComido();
+		fantasma.esComidoPor(pacman);
 		fantasma.pasaronSegundos(ContextConfiguration.PERIODO_DE_MUERTO);
 		assertTrue(fantasma.getEstado() instanceof Cazador);
 		assertTrue(((Cazador)fantasma.getEstado()).getNivelDeAgresividad()==0);
@@ -85,7 +88,7 @@ public class testFantasma extends TestCase{
 	}
 	public void testDeMuertoACazadorNOPorTiempoCumplido(){
 		fantasma.iniciaPowerPellet();
-		fantasma.esComido();
+		fantasma.esComidoPor(pacman);
 		fantasma.pasaronSegundos(ContextConfiguration.PERIODO_DE_MUERTO-1);
 		assertFalse(fantasma.getEstado() instanceof Cazador);
 	}

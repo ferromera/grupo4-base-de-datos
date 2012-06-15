@@ -9,8 +9,8 @@ public abstract class Estado {
 		this.fantasma = fantasma;
 	}
 	abstract public void iniciaPowerPellet();
-	abstract public void esComido();
+	abstract public void esComidoPor(Comible comible);
 	abstract public void pasaronSegundos(int segundos);
-	abstract public void mover();
+	abstract public void mover(Direccion direccion);
 
 }
