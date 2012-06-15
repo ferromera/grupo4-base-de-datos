@@ -16,12 +16,12 @@ public class Muerto extends Estado {
 	}
 
 	@Override
-	public void esComido() {
+	public void esComidoPor(Comible comible) {
 		System.out.println("No me podes comer, estoy muerto");		
 	}
 
 	@Override
-	public void mover() {
+	public void mover(Direccion direccion) {
 		System.out.println("Estoy muerto, no me puedo mover");				
 	}
 

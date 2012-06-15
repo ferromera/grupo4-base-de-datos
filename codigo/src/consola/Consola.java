@@ -3,15 +3,19 @@ package consola;
 import java.util.Scanner;
 
 import model.ContextConfiguration;
+import model.Direccion;
 import model.Fantasma;
+import model.Pacman;
 import model.Partida;
 import model.Presa;
 
 public class Consola {
 	private Fantasma fantasma;
 	private Partida partida;
+	private Pacman pacman;
 	
 	public Consola(){
+		pacman = new Pacman();
 		partida = new Partida(new ContextConfiguration());
 	}
 	
@@ -71,7 +75,7 @@ public class Consola {
 
 	private void moverFantasma() {
 		if (fantasmaIniciado())
-			this.fantasma.mover();
+			this.fantasma.mover(Direccion.DERECHA);
 	}
 
 	private void iniciarFantasma() {
@@ -82,7 +86,7 @@ public class Consola {
 
 	private void comerFantasma() {
 		if (fantasmaIniciado())
-			this.fantasma.esComido();
+			this.fantasma.esComidoPor(pacman);
 	}
 
 	private void convertirEnPresa() {

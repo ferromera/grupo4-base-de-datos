@@ -18,12 +18,13 @@ public class Cazador extends Estado {
 	}
 
 	@Override
-	public void esComido() {
+	public void esComidoPor(Comible comible) {
 		System.out.println("No me podes comer, soy cazador");
+		comible.esComidoPor(this.fantasma);
 	}
 
 	@Override
-	public void mover() {
+	public void mover(Direccion direccion) {
 		System.out.println("Soy cazador y me muevo con nivel de agresividad "
 				+ this.nivelDeAgresividad);
 	}
