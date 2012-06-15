@@ -7,9 +7,10 @@ public class Fantasma implements Movible, Comible, Posicionable {
 	private LoggerHelper logger;
 	private Eslabon eslabon;
 	
-	public Fantasma (){
+	public Fantasma (Eslabon eslabon){
 		this.estado = new Cazador(this);
 		this.logger = new LoggerHelper("fantasma");
+		this.eslabon = eslabon;
 	}
 	
 	public void esComidoPor(Comible comible) {

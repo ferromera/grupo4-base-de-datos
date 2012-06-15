@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import model.ContextConfiguration;
 import model.Direccion;
+import model.Eslabon;
 import model.Fantasma;
 import model.Pacman;
 import model.Partida;
@@ -15,7 +16,7 @@ public class Consola {
 	private Pacman pacman;
 	
 	public Consola(){
-		pacman = new Pacman();
+		pacman = new Pacman(new Eslabon(1,1));
 		partida = new Partida(new ContextConfiguration());
 	}
 	
@@ -79,7 +80,7 @@ public class Consola {
 	}
 
 	private void iniciarFantasma() {
-		this.fantasma = new Fantasma();
+		this.fantasma = new Fantasma(new Eslabon(1,1));
 		this.partida.addFantasma(fantasma);
 		this.partida.arrancarPartida();
 	}
