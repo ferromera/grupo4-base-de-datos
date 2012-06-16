@@ -2,13 +2,18 @@ package model;
 
 public class Bolon extends Punto {
 
-	public Bolon(Laberinto laberinto) {
-		super(laberinto);
+	public Bolon(Eslabon eslabon, Laberinto laberinto) {
+		super(eslabon, laberinto);
 	}
 
 	@Override
 	public void esComidoPor(Comible comible) {
-		this.laberinto.iniciaPowerPellet();
+		//this.laberinto.iniciaPowerPellet();
+	}
+
+	@Override
+	public Eslabon getEslabon() {
+		return eslabon;
 	}
 
 }

@@ -1,7 +1,7 @@
 package model;
 
 
-public class Pacman implements Comible, Movible, Posicionable {
+public class Pacman implements Comible, Movible {
 	private Eslabon eslabon;
 
 	public Pacman(Eslabon eslabon){
