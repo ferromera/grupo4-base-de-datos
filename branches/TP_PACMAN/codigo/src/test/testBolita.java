@@ -35,10 +35,20 @@ public class testBolita  extends TestCase{
 		
 
 	}
-	public void testBolitaComida(){
+	public void testBolitaComidaPorPacman(){
 		assertNotNull(bolita.getEslabon());
+		int cantidadDeElementos = eslabon.getComibles().size();
 		laberinto.getPacman().comerEn(bolita.getEslabon());
 		assertNull(bolita.getEslabon());
-		
+		assertTrue(cantidadDeElementos -1 == eslabon.getComibles().size());
 	}
+	
+	/*public void testBolitaNoComidaPorFantasma(){
+		assertNotNull(bolita.getEslabon());
+		int cantidadDeElementos = eslabon.getComibles().size();
+		laberinto.getFantasmas().comerEn(bolita.getEslabon());
+		assertNotNull(bolita.getEslabon());
+		assertTrue(cantidadDeElementos -1 == eslabon.getComibles().size());
+	}*/
+	
 }

@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-
+import java.util.Iterator;
 import java.util.List;
 
 public class Eslabon {
@@ -69,6 +69,24 @@ public class Eslabon {
 	}
 
 	public void remover(Comible comible) {
-		comibles.remove(comible);		
+		
+		
+		
+		Iterator<Comible> iterator = comibles.iterator();
+		while (iterator.hasNext()){
+			if (iterator.next() == comible){
+				iterator.remove();
+			}
+		}
+		
+		//comibles.remove(comible);*/		
+	}
+
+	public void comiblesComidosPor(Pacman pacman) {
+		List<Comible> comiblesAComer =  new ArrayList<Comible>(this.getComibles());
+		Iterator<Comible> iterator = comiblesAComer.iterator();
+		while (iterator.hasNext()){
+			iterator.next().esComidoPor(pacman);
+		}
 	}
 }
