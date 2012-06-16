@@ -62,6 +62,7 @@ public class Fantasma implements Movible, Comible {
 
 	public void serComido(Pacman pacman) {
 		// TODO algo con estados aca
+		estado.esComidoPor(pacman);
 		
 	}
 

@@ -1,6 +1,7 @@
 package model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+
 import java.util.List;
 
 public class Eslabon {
@@ -17,7 +18,7 @@ public class Eslabon {
 	public Eslabon(int fila, int columna) {
 		this.fila = fila;
 		this.columna = columna;
-		comibles = new LinkedList<Comible>();
+		comibles = new ArrayList<Comible>();
 	}
 	
 	public int getFila() {

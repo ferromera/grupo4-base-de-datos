@@ -32,9 +32,8 @@ public class Pacman implements Comible, Movible {
 
 	}
 
-	private void comerEn(Eslabon eslabon2) {
+	public void comerEn(Eslabon eslabon2) {
 		if (eslabon2!=null){
-
 			List<Comible> comibles =  this.eslabon.getComibles();
 			Iterator<Comible> iterator = comibles.iterator();
 			while (iterator.hasNext()){
