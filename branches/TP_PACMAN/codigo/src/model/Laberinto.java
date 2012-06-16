@@ -41,5 +41,8 @@ public class Laberinto {
 	public Eslabon getEslabonDePacman(){
 		return this.pacman.getEslabon();	
 	}
+	public Pacman getPacman(){
+		return pacman;
+	}
 	
 }

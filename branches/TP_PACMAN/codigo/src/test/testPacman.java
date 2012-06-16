@@ -8,6 +8,7 @@ public class testPacman extends TestCase{
 	
 	Eslabon eslabon;
 	
+	
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();

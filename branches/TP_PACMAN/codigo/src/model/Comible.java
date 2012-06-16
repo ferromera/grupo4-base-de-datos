@@ -1,5 +1,5 @@
 package model;
 
 public interface Comible extends Posicionable {
-	void esComidoPor(Comible comible);
+	void esComidoPor(Movible movible);
 }

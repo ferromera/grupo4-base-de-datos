@@ -2,7 +2,7 @@ package model;
 
 import helpers.LoggerHelper;
 
-public class Fantasma implements Movible, Comible, Posicionable {
+public class Fantasma implements Movible, Comible {
 	private Estado estado;
 	private LoggerHelper logger;
 	private Eslabon eslabon;
@@ -11,10 +11,6 @@ public class Fantasma implements Movible, Comible, Posicionable {
 		this.estado = new Cazador(this);
 		this.logger = new LoggerHelper("fantasma");
 		this.eslabon = eslabon;
-	}
-	
-	public void esComidoPor(Comible comible) {
-		this.estado.esComidoPor(comible);
 	}
 	
 	public void pasaronSegundos(int segundos){
@@ -46,5 +42,11 @@ public class Fantasma implements Movible, Comible, Posicionable {
 	@Override
 	public Eslabon getEslabon() {
 		return this.eslabon;
+	}
+
+	@Override
+	public void esComidoPor(Movible movible) {
+		// TODO Auto-generated method stub
+		
 	}
 }

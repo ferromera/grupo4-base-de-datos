@@ -6,14 +6,19 @@ public class Bolon extends Punto {
 		super(eslabon, laberinto);
 	}
 
-	@Override
-	public void esComidoPor(Comible comible) {
-		//this.laberinto.iniciaPowerPellet();
-	}
+
 
 	@Override
 	public Eslabon getEslabon() {
 		return eslabon;
+	}
+
+
+
+	@Override
+	public void esComidoPor(Movible movible) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
