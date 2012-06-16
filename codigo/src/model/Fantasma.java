@@ -46,7 +46,30 @@ public class Fantasma implements Movible, Comible {
 
 	@Override
 	public void esComidoPor(Movible movible) {
-		// TODO Auto-generated method stub
+		//aca hay que hacer algo con el estado...
+		movible.comerFantasma(this);		
+	}
+
+	@Override
+	public void comerPunto(Punto punto) {
+		// Este no hace nada.. no come bolitas
+	}
+
+	@Override
+	public void comerFantasma(Fantasma fantasma) {
+		//no hace nada.. no come fantasmas
+	}
+
+	public void serComido(Pacman pacman) {
+		// TODO algo con estados aca
 		
 	}
+
+	@Override
+	public void comerPacman(Pacman pacman) {
+		//algo con estados aca?
+		pacman.serComido(this);		
+	}
+
+
 }

@@ -66,4 +66,8 @@ public class Eslabon {
 	public List<Comible> getComibles(){
 		return comibles;
 	}
+
+	public void remover(Comible comible) {
+		comibles.remove(comible);		
+	}
 }
