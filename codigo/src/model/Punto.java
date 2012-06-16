@@ -9,7 +9,5 @@ public abstract class Punto implements Comible {
 		eslabon.addComible(this);
 		this.laberinto= laberinto;
 	}
-	
-	@Override
-	abstract public void esComidoPor(Comible comible);
-}
+}	
+

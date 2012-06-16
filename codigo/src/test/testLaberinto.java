@@ -20,7 +20,9 @@ public class testLaberinto extends TestCase {
 		Map<Integer, Eslabon> eslabones = new HashMap<Integer, Eslabon>();
 		laberinto = new Laberinto(10, 10, posicionInicialPacman , posicionSalidaFantasmas , eslabones );
 		assertEquals(laberinto.getEslabonDePacman(),  posicionInicialPacman);
+		assertEquals(laberinto.getPacman().getEslabon(), posicionInicialPacman);
 	}
+	
 	
 	
 }

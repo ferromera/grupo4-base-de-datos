@@ -6,14 +6,19 @@ public class Bolita extends Punto {
 		super(eslabon, laberinto);
 	}
 
-	@Override
-	public void esComidoPor(Comible comible) {
-		//Deberia sumarle puntos al pacman. No forma parte del enunciado.
-	}
+
 
 	@Override
 	public Eslabon getEslabon() {
 		return eslabon;
+	}
+
+
+
+	@Override
+	public void esComidoPor(Movible movible) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
