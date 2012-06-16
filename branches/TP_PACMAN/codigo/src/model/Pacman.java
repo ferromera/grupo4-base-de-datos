@@ -10,7 +10,7 @@ public class Pacman implements Comible, Movible {
 	public Pacman(Eslabon eslabon){
 		this.eslabon = eslabon;
 	}
-	
+
 	@Override
 	public void mover(Direccion direccion) {
 		Eslabon proximoEslabon;
@@ -29,12 +29,12 @@ public class Pacman implements Comible, Movible {
 			break;
 		}
 		this.comerEn(eslabon);
-		
+
 	}
 
 	private void comerEn(Eslabon eslabon2) {
 		if (eslabon2!=null){
-			
+
 			List<Comible> comibles =  this.eslabon.getComibles();
 			Iterator<Comible> iterator = comibles.iterator();
 			while (iterator.hasNext()){
@@ -43,8 +43,6 @@ public class Pacman implements Comible, Movible {
 		}
 	}
 
-
-
 	@Override
 	public Eslabon getEslabon() {
 		return this.eslabon;
@@ -52,8 +50,24 @@ public class Pacman implements Comible, Movible {
 
 	@Override
 	public void esComidoPor(Movible movible) {
-		// TODO Auto-generated method stub
-		
+		movible.comerPacman(this);
 	}
 
+	@Override
+	public void comerPunto(Punto punto) {
+		punto.serComido();		
+	}
+
+	@Override
+	public void comerFantasma(Fantasma fantasma) {
+		fantasma.serComido(this);		
+	}
+	public void serComido(Fantasma fantasma){
+		//TODO
+	}
+
+	@Override
+	public void comerPacman(Pacman pacman) {
+		// no hago nada... no como pacmans		
+	}
 }

@@ -17,8 +17,12 @@ public class Bolita extends Punto {
 
 	@Override
 	public void esComidoPor(Movible movible) {
-		// TODO Auto-generated method stub
-		
+		movible.comerPunto(this);		
 	}
 
+
+	@Override
+	public void serComido() {
+		super.serComido(); //sumar puntos fuera del alcance
+	}
 }

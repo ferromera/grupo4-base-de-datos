@@ -1,5 +1,7 @@
 package model;
 
+
+
 public class Bolon extends Punto {
 
 	public Bolon(Eslabon eslabon, Laberinto laberinto) {
@@ -13,12 +15,15 @@ public class Bolon extends Punto {
 		return eslabon;
 	}
 
-
-
 	@Override
 	public void esComidoPor(Movible movible) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	public void serComido() {
+		laberinto.iniciaPowerPellet();
+		super.serComido();		
+	}
 }

@@ -9,5 +9,10 @@ public abstract class Punto implements Comible {
 		eslabon.addComible(this);
 		this.laberinto= laberinto;
 	}
+
+	public void serComido(){
+		this.eslabon.remover(this);
+		this.eslabon=null;	
+	}
 }	
 
