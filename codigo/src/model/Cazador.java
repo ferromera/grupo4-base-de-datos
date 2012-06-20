@@ -3,8 +3,8 @@ package model;
 public class Cazador extends Estado {
 	private int nivelDeAgresividad;
 
-	public Cazador(Fantasma fantasma) {
-		super(fantasma);
+	public Cazador(Fantasma fantasma, Estrategia estrategia) {
+		super(fantasma, estrategia);
 		System.out.println("Fantasma Cazador");
 	}
 
@@ -40,6 +40,6 @@ public class Cazador extends Estado {
 
 	@Override
 	public void iniciaPowerPellet() {
-		this.fantasma.setEstado(new Presa(this.fantasma));
+		this.fantasma.setEstado(new Presa(this.fantasma, estrategia));
 	}
 }

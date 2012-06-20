@@ -24,10 +24,10 @@ public class Laberinto {
     	
     	this.fantasmas = new ArrayList<Fantasma>();
     	
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas));
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas));
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas));
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo()));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo()));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo()));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo()));
 		
 		this.pacman = new Pacman(this.posicionInicialPacman);
     }

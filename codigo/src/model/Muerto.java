@@ -1,8 +1,8 @@
 package model;
 
 public class Muerto extends Estado {	
-	public Muerto(Fantasma fantasma) {
-		super(fantasma);			
+	public Muerto(Fantasma fantasma, Estrategia estrategia) {
+		super(fantasma, estrategia);			
 		System.out.println("Fantasma Muerto");
 	}
 	
@@ -11,7 +11,7 @@ public class Muerto extends Estado {
 		this.segundosTranscurridos += segundos;
 		
 		if(this.segundosTranscurridos >= ContextConfiguration.PERIODO_DE_MUERTO){
-			this.fantasma.setEstado(new Cazador(this.fantasma));
+			this.fantasma.setEstado(new Cazador(this.fantasma, estrategia));
 		}
 	}
 

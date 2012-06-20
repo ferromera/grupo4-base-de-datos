@@ -7,8 +7,8 @@ public class Fantasma implements Movible, Comible {
 	private LoggerHelper logger;
 	private Eslabon eslabon;
 	
-	public Fantasma (Eslabon eslabon){
-		this.estado = new Cazador(this);
+	public Fantasma (Eslabon eslabon, Estrategia estrategia){
+		this.estado = new Cazador(this, estrategia);
 		this.logger = new LoggerHelper("fantasma");
 		this.eslabon = eslabon;
 	}
