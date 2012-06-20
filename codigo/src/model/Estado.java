@@ -14,5 +14,9 @@ public abstract class Estado {
 	abstract public void esComidoPor(Comible comible);
 	abstract public void pasaronSegundos(int segundos);
 	abstract public void mover(Direccion direccion);
+	public Fantasma getFantasma(){return this.fantasma;}
+	public void mover(){
+		estrategia.mover(this);
+	}
 
 }
