@@ -1,10 +1,12 @@
-/*package consola;
+package consola;
 
 import java.util.Scanner;
 
 import model.ContextConfiguration;
 import model.Direccion;
 import model.Eslabon;
+import model.EstrategiaPresa;
+import model.EstrategiaZonzo;
 import model.Fantasma;
 import model.Pacman;
 import model.Partida;
@@ -80,7 +82,8 @@ public class Consola {
 	}
 
 	private void iniciarFantasma() {
-		this.fantasma = new Fantasma(new Eslabon(1,1));
+		EstrategiaZonzo estrategia = new EstrategiaZonzo();
+		this.fantasma = new Fantasma(new Eslabon(1,1),estrategia);
 		this.partida.addFantasma(fantasma);
 		this.partida.arrancarPartida();
 	}
@@ -91,8 +94,9 @@ public class Consola {
 	}
 
 	private void convertirEnPresa() {
+		EstrategiaPresa estrategia = new EstrategiaPresa();
 		if (fantasmaIniciado())
-			this.fantasma.setEstado(new Presa(this.fantasma));
+			this.fantasma.setEstado(new Presa(this.fantasma,estrategia));
 	}
 
 	private void MostrarFantasma() {
@@ -108,4 +112,3 @@ public class Consola {
 			return true;
 	}
 }
-*/
