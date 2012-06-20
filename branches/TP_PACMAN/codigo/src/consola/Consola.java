@@ -1,4 +1,4 @@
-package consola;
+/*package consola;
 
 import java.util.Scanner;
 
@@ -108,3 +108,4 @@ public class Consola {
 			return true;
 	}
 }
+*/

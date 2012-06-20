@@ -1,7 +1,7 @@
 package model;
 
 public interface Movible {
-	void mover(Direccion direccion);
+	void mover();
 
 	void comerPunto(Punto punto);
 

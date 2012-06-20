@@ -12,9 +12,10 @@ public class Pacman implements Comible, Movible {
 	}
 
 	@Override
-	public void mover(Direccion direccion) {
+	public void mover() {
 		Eslabon proximoEslabon;
-		switch (direccion) {
+		Direccion direccion = Direccion.ABAJO;
+		switch (direccion ) {
 		case ARRIBA:
 			proximoEslabon = eslabon.getEslabonArriba();
 			break;
@@ -29,6 +30,7 @@ public class Pacman implements Comible, Movible {
 			break;
 		}
 		this.comerEn(eslabon);
+		//aca va la estrategia por ahora hardcodeado a ir arriba
 
 	}
 
