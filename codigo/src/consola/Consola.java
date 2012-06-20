@@ -78,7 +78,7 @@ public class Consola {
 
 	private void moverFantasma() {
 		if (fantasmaIniciado())
-			this.fantasma.mover(Direccion.DERECHA);
+			this.fantasma.mover();
 	}
 
 	private void iniciarFantasma() {
