@@ -4,6 +4,8 @@ import junit.framework.TestCase;
 import model.Cazador;
 import model.ContextConfiguration;
 import model.Eslabon;
+import model.Estrategia;
+import model.EstrategiaZonzo;
 import model.Fantasma;
 import model.Muerto;
 import model.Pacman;
@@ -14,11 +16,13 @@ public class testFantasma extends TestCase{
 	private Fantasma fantasma;
 	private Pacman pacman;
 	private Eslabon eslabon;
+	private Estrategia estrategia;
 	
 	@Override
 	protected void setUp(){
 		eslabon = new Eslabon(1,1);
-		fantasma = new Fantasma(eslabon);
+		estrategia = new EstrategiaZonzo();
+		fantasma = new Fantasma(eslabon, estrategia);
 		pacman = new Pacman(eslabon);
 	}
 	

@@ -2,8 +2,8 @@ package model;
 
 public class Presa extends Estado {
 	private Cazador estadoAnterior;
-	public Presa(Fantasma fantasma) {
-		super(fantasma);
+	public Presa(Fantasma fantasma, Estrategia estrategia) {
+		super(fantasma, estrategia);
 		this.estadoAnterior= (Cazador)fantasma.getEstado();
 		System.out.println("Fantasma Presa");
 	}
@@ -20,7 +20,7 @@ public class Presa extends Estado {
 	@Override
 	public void esComidoPor(Comible comible) {//esto aca es raro... comido por comible
 		System.out.println("Soy presa y me comiste");
-		this.fantasma.setEstado(new Muerto(this.fantasma));
+		this.fantasma.setEstado(new Muerto(this.fantasma, estrategia));
 	}
 
 	@Override
