@@ -17,8 +17,7 @@ public class Bolon extends Punto {
 
 	@Override
 	public void esComidoPor(Movible movible) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("SOY BOLON Y SOY COMIDO por "+movible);
 	}
 
 	@Override

@@ -7,6 +7,7 @@ public class Pacman implements Comible, Movible {
 
 	public Pacman(Eslabon eslabon){
 		this.eslabon = eslabon;
+		this.eslabon.addComible(this);
 	}
 
 	@Override
@@ -65,5 +66,10 @@ public class Pacman implements Comible, Movible {
 	@Override
 	public void comerPacman(Pacman pacman) {
 		// no hago nada... no como pacmans		
+	}
+
+	public void setEslabon(Eslabon eslabon) {
+		this.eslabon = eslabon;
+		this.eslabon.addComible(this);
 	}
 }

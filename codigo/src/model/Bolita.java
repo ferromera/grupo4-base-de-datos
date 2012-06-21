@@ -17,6 +17,7 @@ public class Bolita extends Punto {
 
 	@Override
 	public void esComidoPor(Movible movible) {
+		System.out.println("SOY BOLITA Y SOY COMIDO por "+movible);
 		movible.comerPunto(this);		
 	}
 

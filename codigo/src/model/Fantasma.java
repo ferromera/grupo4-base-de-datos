@@ -11,7 +11,7 @@ public class Fantasma implements Movible, Comible {
 		this.estado = new Cazador(this, estrategia);
 		this.logger = new LoggerHelper("fantasma");
 		this.eslabon = eslabon;
-		
+		this.eslabon.addComible(this);
 	}
 	
 	public void pasaronSegundos(int segundos){
@@ -38,6 +38,8 @@ public class Fantasma implements Movible, Comible {
 	@Override
 	public void mover() {
 		this.estado.mover();
+		for(Comible c : this.eslabon.getComibles())
+			c.esComidoPor(this);
 	}
 
 	@Override
@@ -75,7 +77,6 @@ public class Fantasma implements Movible, Comible {
 
 	public void setEslabon(Eslabon eslabon) {
 		this.eslabon = eslabon;
+		this.eslabon.addComible(this);
 	}
-
-
 }

@@ -1,6 +1,7 @@
 package test;
 
 import junit.framework.TestCase;
+import model.Bolita;
 import model.ContextConfiguration;
 import model.Eslabon;
 import model.Estado;
@@ -8,7 +9,6 @@ import model.EstrategiaZonzo;
 import model.Fantasma;
 import model.Pacman;
 import model.PacmanProvider;
-import model.Presa;
 
 public class testEstrategiaZonzo extends TestCase {
 	private ContextConfiguration ctx = new ContextConfiguration();
@@ -51,6 +51,7 @@ public class testEstrategiaZonzo extends TestCase {
 		
 		eslabonFantasma = eslabones[4][6];
 		eslabonPacman = eslabones[5][5];
+		eslabonPacman.addComible(new Bolita(eslabonPacman, null));
 		
 		zonzo = new EstrategiaZonzo(new PacmanProvider() {
 			@Override
