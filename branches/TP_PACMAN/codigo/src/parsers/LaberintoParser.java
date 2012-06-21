@@ -36,9 +36,9 @@ public class LaberintoParser {
 			
 			eslabones = LaberintoParser.primeraPasadaCreaNodos(eslabonesList);
 			eslabones = LaberintoParser.segundaPasadaVinculaEslabones(eslabonesList, eslabones);
-			
-			Eslabon posicionInicialPacman = eslabones.get(laberintoRoot.getAttribute("posicionInicialPacman"));
-			Eslabon posicionSalidaFantasmas = eslabones.get(laberintoRoot.getAttribute("posicionSalidaFantasmas"));
+
+			Eslabon posicionInicialPacman = eslabones.get(Integer.parseInt(laberintoRoot.getAttribute("posicionInicialPacman")));
+			Eslabon posicionSalidaFantasmas = eslabones.get(Integer.parseInt(laberintoRoot.getAttribute("posicionSalidaFantasmas")));
 			
 			return Laberinto.valueOf(ancho, alto, posicionInicialPacman, posicionSalidaFantasmas, eslabones);
 			
