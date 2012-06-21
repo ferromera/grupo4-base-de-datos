@@ -1,8 +1,13 @@
 package model;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import commons.PersistibleXML;
+
 import helpers.LoggerHelper;
 
-public class Fantasma implements Movible, Comible {
+public class Fantasma implements Movible, Comible ,PersistibleXML{
 	private Estado estado;
 	private LoggerHelper logger;
 	private Eslabon eslabon;
@@ -78,5 +83,18 @@ public class Fantasma implements Movible, Comible {
 	public void setEslabon(Eslabon eslabon) {
 		this.eslabon = eslabon;
 		this.eslabon.addComible(this);
+	}
+
+	@Override
+	public Element writeToXmlFormat(Document listFantasmas) {
+		Element elemFantasma = listFantasmas.createElement("fantasma");
+		elemFantasma.setAttribute("id", "");
+		elemFantasma.setAttribute("nodo", "");
+		elemFantasma.setAttribute("fila", String.valueOf(this.eslabon.getFila()));
+		elemFantasma.setAttribute("columna", String.valueOf(this.eslabon.getColumna()));
+		elemFantasma.setAttribute("sentido", "");
+		elemFantasma.setAttribute("personalidad", this.estado.estrategia.getClass().getName());
+		elemFantasma.setAttribute("estado", this.estado.getClass().getName());
+		return elemFantasma;
 	}
 }

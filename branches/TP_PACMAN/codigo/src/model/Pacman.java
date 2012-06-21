@@ -2,6 +2,7 @@ package model;
 
 
 
+
 public class Pacman implements Comible, Movible {
 	private Eslabon eslabon;
 
@@ -72,4 +73,5 @@ public class Pacman implements Comible, Movible {
 		this.eslabon = eslabon;
 		this.eslabon.addComible(this);
 	}
+
 }
