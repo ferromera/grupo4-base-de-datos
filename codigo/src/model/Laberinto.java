@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Laberinto {
+public class Laberinto implements PacmanProvider {
 	private final int ancho;
 	private final int alto;
 	private final Eslabon posicionInicialPacman;
@@ -36,10 +36,10 @@ public class Laberinto {
 
 		this.fantasmas = new ArrayList<Fantasma>();
 
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo()));
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo()));
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo()));
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo()));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
 
 		this.pacman = new Pacman(this.posicionInicialPacman);
 
@@ -52,6 +52,7 @@ public class Laberinto {
 		}
 	}
 
+	@Override
 	public Eslabon getEslabonDePacman() {
 		return this.pacman.getEslabon();
 	}

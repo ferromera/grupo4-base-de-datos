@@ -9,6 +9,7 @@ import model.EstrategiaZonzo;
 import model.Fantasma;
 import model.Muerto;
 import model.Pacman;
+import model.PacmanProvider;
 import model.Presa;
 
 public class testFantasma extends TestCase{
@@ -21,7 +22,12 @@ public class testFantasma extends TestCase{
 	@Override
 	protected void setUp(){
 		eslabon = new Eslabon(1,1);
-		estrategia = new EstrategiaZonzo();
+		estrategia = new EstrategiaZonzo(new PacmanProvider() {
+			@Override
+			public Eslabon getEslabonDePacman() {
+				return eslabon;
+			}
+		});
 		fantasma = new Fantasma(eslabon, estrategia);
 		pacman = new Pacman(eslabon);
 	}

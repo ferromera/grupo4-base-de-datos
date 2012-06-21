@@ -11,10 +11,10 @@ public class Cazador extends Estado {
 	@Override
 	public void pasaronSegundos(int segundos) {
 		// Aumentar grado de agresividad con el paso del tiempo.
-		if(this.nivelDeAgresividad+segundos < ContextConfiguration.MAXIMO_NIVEL_AGRESIVIDAD)
-			this.nivelDeAgresividad+=segundos;
+		if (this.nivelDeAgresividad + segundos < ContextConfiguration.MAXIMO_NIVEL_AGRESIVIDAD)
+			this.nivelDeAgresividad += segundos;
 		else
-			this.nivelDeAgresividad=ContextConfiguration.MAXIMO_NIVEL_AGRESIVIDAD;
+			this.nivelDeAgresividad = ContextConfiguration.MAXIMO_NIVEL_AGRESIVIDAD;
 	}
 
 	@Override
@@ -25,8 +25,20 @@ public class Cazador extends Estado {
 
 	@Override
 	public void mover(Direccion direccion) {
-		System.out.println("Soy cazador y me muevo con nivel de agresividad "
-				+ this.nivelDeAgresividad);
+		switch (direccion) {
+		case ARRIBA:
+			this.fantasma.setEslabon(fantasma.getEslabon().getEslabonArriba());
+			break;
+		case ABAJO:
+			this.fantasma.setEslabon(fantasma.getEslabon().getEslabonAbajo());
+			break;
+		case DERECHA:
+			this.fantasma.setEslabon(fantasma.getEslabon().getEslabonDerecho());
+			break;
+		case IZQUIERDA:
+			this.fantasma.setEslabon(fantasma.getEslabon().getEslabonIzquierdo());
+			break;
+		}
 	}
 
 	@Override

@@ -73,5 +73,9 @@ public class Fantasma implements Movible, Comible {
 		pacman.serComido(this);		
 	}
 
+	public void setEslabon(Eslabon eslabon) {
+		this.eslabon = eslabon;
+	}
+
 
 }
