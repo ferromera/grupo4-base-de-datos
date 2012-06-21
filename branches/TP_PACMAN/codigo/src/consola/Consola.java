@@ -3,14 +3,9 @@ package consola;
 import java.util.Scanner;
 
 import model.ContextConfiguration;
-import model.Direccion;
-import model.Eslabon;
-import model.EstrategiaPresa;
-import model.EstrategiaZonzo;
 import model.Fantasma;
 import model.Pacman;
 import model.Partida;
-import model.Presa;
 
 public class Consola {
 	private Fantasma fantasma;
@@ -18,7 +13,6 @@ public class Consola {
 	private Pacman pacman;
 	
 	public Consola(){
-		pacman = new Pacman(new Eslabon(1,1));
 		partida = new Partida(new ContextConfiguration());
 	}
 	
@@ -32,15 +26,11 @@ public class Consola {
 		int op;
 		
 		System.out.println("*********************************************************");
-		System.out.println("Trabajo practico grupal N¡ 2: Pacman");
+		System.out.println("Trabajo practico grupal N¡ 3: Pacman");
 		System.out.println("*********************************************************");
 		
-		System.out.println("1.- Iniciar Fantasma");
-		System.out.println("2.- Comer el fantasma");
-		System.out.println("3.- Convertir en presa el fantasma");
-		System.out.println("4.- Mover el fantasma");
-		System.out.println("5.- Mostrar el fantasma");
-		System.out.println("6.- Salir");
+		System.out.println("1.- Iniciar Partida");
+		System.out.println("2.- Salir");
 		
 		do{
 			
@@ -50,65 +40,8 @@ public class Consola {
 			System.out.println("");
 			System.out.println("*********************************************************");
 
-			switch (op) {
-				case 1:
-					this.iniciarFantasma();
-					break;
-				case 2:
-					this.comerFantasma();
-					break;
-				case 3:
-					this.convertirEnPresa();
-					break;
-				case 4:
-					this.moverFantasma();
-					break;
-				case 5:
-					this.MostrarFantasma();
-					break;
-				default:
-					break;
-			}
-			
-			System.out.println("*********************************************************");
-			System.out.println("");
-
-		}while(op != 6);
+		}while(op != 2);
 	}
 
-	private void moverFantasma() {
-		if (fantasmaIniciado())
-			this.fantasma.mover();
-	}
 
-	private void iniciarFantasma() {
-		EstrategiaZonzo estrategia = new EstrategiaZonzo();
-		this.fantasma = new Fantasma(new Eslabon(1,1),estrategia);
-		this.partida.addFantasma(fantasma);
-		this.partida.arrancarPartida();
-	}
-
-	private void comerFantasma() {
-		if (fantasmaIniciado())
-			this.fantasma.esComidoPor(pacman);
-	}
-
-	private void convertirEnPresa() {
-		EstrategiaPresa estrategia = new EstrategiaPresa();
-		if (fantasmaIniciado())
-			this.fantasma.setEstado(new Presa(this.fantasma,estrategia));
-	}
-
-	private void MostrarFantasma() {
-		if (fantasmaIniciado())
-			System.out.println(this.fantasma.toString());
-	}
-
-	private boolean fantasmaIniciado() {
-		if (this.fantasma == null) {
-			System.out.println("Debes iniciar un fantasma primero");
-			return false;
-		} else
-			return true;
-	}
 }

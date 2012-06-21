@@ -69,9 +69,6 @@ public class Eslabon {
 	}
 
 	public void remover(Comible comible) {
-		
-		
-		
 		Iterator<Comible> iterator = comibles.iterator();
 		while (iterator.hasNext()){
 			if (iterator.next() == comible){

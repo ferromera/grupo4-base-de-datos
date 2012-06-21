@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class EstrategiaZonzo extends Estrategia {
 
-	public EstrategiaZonzo() {
-		super();
+	public EstrategiaZonzo(PacmanProvider pacmanProvider) {
+		super(pacmanProvider);
 		rangoVisionInicial = ContextConfiguration.VISION_N1;
 	}
 
 	@Override
 	void mover(Estado estado) {
-		Eslabon eslabonPacman = Laberinto.getInstance().getEslabonDePacman();
+		Eslabon eslabonPacman = pacmanProvider.getEslabonDePacman();
 		Eslabon eslabonFantasma = estado.getFantasma().getEslabon();
 		
 		if (pacmanEnRango(eslabonPacman, eslabonFantasma)) {
@@ -56,25 +56,44 @@ public class EstrategiaZonzo extends Estrategia {
 
 	// Averiguo la direccion calculando la direccion del vector PosFantasma - PosPacman
 	private Direccion direccionHaciaElPacman(Eslabon eslabonPacman, Eslabon eslabonFantasma) {
-		int direccionX = eslabonFantasma.getFila() - eslabonPacman.getColumna();
+		int direccionX = eslabonFantasma.getFila() - eslabonPacman.getFila();
 		int direccionY = eslabonFantasma.getColumna() - eslabonPacman.getColumna();
 
+		//SIN CONSIDERAR LAS PAREDES 
 		//esta en los cuadrantes I y II 
-		if (direccionY < 0) {
-			// si no es una pared
-			if (eslabonFantasma.getEslabonAbajo() != null)
+		if (direccionX < 0) {
 				return Direccion.ABAJO;
-			else if (direccionX > 0)
-				return Direccion.DERECHA;
-			else
-				return Direccion.IZQUIERDA;
-		} else {
-			if (eslabonFantasma.getEslabonArriba() != null)
+		} else if (direccionX > 0) {
 				return Direccion.ARRIBA;
-			else if (direccionX > 0)
-				return Direccion.DERECHA;
-			else
+		}else{
+			if (direccionY > 0)
 				return Direccion.IZQUIERDA;
+			else
+				return Direccion.DERECHA;
 		}
+		
+		//INCLUYE ALGO DE LOGICA PARA EVITAR PAREDES 
+//		//esta en los cuadrantes I y II 
+//		if (direccionX < 0) {
+//			// si no es una pared
+//			if (eslabonFantasma.getEslabonAbajo() != null)
+//				return Direccion.ABAJO;
+//			else if (direccionY > 0)
+//				return Direccion.DERECHA;
+//			else
+//				return Direccion.IZQUIERDA;
+//		} else if (direccionX > 0) {
+//			if (eslabonFantasma.getEslabonArriba() != null)
+//				return Direccion.ARRIBA;
+//			else if (direccionY > 0)
+//				return Direccion.DERECHA;
+//			else
+//				return Direccion.IZQUIERDA;
+//		}else{
+//			if (direccionY > 0)
+//				return Direccion.IZQUIERDA;
+//			else
+//				return Direccion.DERECHA;
+//		}
 	}
 }

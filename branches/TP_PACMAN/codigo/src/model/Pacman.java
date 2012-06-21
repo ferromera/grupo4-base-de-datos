@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Iterator;
-import java.util.List;
 
 
 public class Pacman implements Comible, Movible {
@@ -31,7 +29,6 @@ public class Pacman implements Comible, Movible {
 		}
 		this.comerEn(eslabon);
 		//aca va la estrategia por ahora hardcodeado a ir arriba
-
 	}
 
 	public void comerEn(Eslabon eslabon2) {
@@ -48,6 +45,7 @@ public class Pacman implements Comible, Movible {
 
 	@Override
 	public void esComidoPor(Movible movible) {
+		System.out.println("Estoy siendo comido - pacman");
 		movible.comerPacman(this);
 	}
 
