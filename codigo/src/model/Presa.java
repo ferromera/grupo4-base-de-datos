@@ -18,7 +18,7 @@ public class Presa extends Estado {
 	}
 
 	@Override
-	public void esComidoPor(Comible comible) {//esto aca es raro... comido por comible
+	public void esComidoPor(Movible movible) {//esto aca es raro... comido por comible
 		System.out.println("Soy presa y me comiste");
 		this.fantasma.setEstado(new Muerto(this.fantasma, estrategia));
 	}

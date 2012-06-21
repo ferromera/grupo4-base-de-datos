@@ -11,7 +11,7 @@ public abstract class Estado {
 		this.estrategia = estrategia;
 	}
 	abstract public void iniciaPowerPellet();
-	abstract public void esComidoPor(Comible comible);
+	abstract public void esComidoPor(Movible movible);
 	abstract public void pasaronSegundos(int segundos);
 	abstract public void mover(Direccion direccion);
 	public Fantasma getFantasma(){return this.fantasma;}

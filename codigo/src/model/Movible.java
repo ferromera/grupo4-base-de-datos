@@ -1,6 +1,6 @@
 package model;
 
-public interface Movible {
+public interface Movible extends Comible {
 	void mover();
 
 	void comerPunto(Punto punto);
