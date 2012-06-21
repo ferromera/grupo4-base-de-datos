@@ -18,9 +18,9 @@ public class Cazador extends Estado {
 	}
 
 	@Override
-	public void esComidoPor(Comible comible) {
+	public void esComidoPor(Movible movible) {
 		System.out.println("No me podes comer, soy cazador");
-		comible.esComidoPor(this.fantasma);
+		movible.esComidoPor(this.fantasma);
 	}
 
 	@Override
