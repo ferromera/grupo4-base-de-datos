@@ -1,8 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.Random;
 
 public class EstrategiaZonzo extends Estrategia {
 
@@ -13,77 +11,70 @@ public class EstrategiaZonzo extends Estrategia {
 
 	@Override
 	void mover(Estado estado) {
-
-		if (pacmanEnRango(estado)) {
+		Eslabon eslabonPacman = Laberinto.getInstance().getEslabonDePacman();
+		Eslabon eslabonFantasma = estado.getFantasma().getEslabon();
+		
+		if (pacmanEnRango(eslabonPacman, eslabonFantasma)) {
 			if (estado instanceof Cazador) {
-				// / decisi—n de movimiento hacia el pacman
+				estado.mover(direccionHaciaElPacman(eslabonPacman, eslabonFantasma));
 			} else if (estado instanceof Presa) {
-				// / decisi—n de movimiento alejandome del pacman
+				estado.mover(direccionOpuesta(direccionHaciaElPacman(eslabonPacman, eslabonFantasma)));
 			}
 		} else {
-			// moverse Random
+			estado.mover(Direccion.values()[new Random().nextInt(4) + 1]);
 		}
 	}
 
-	private boolean pacmanEnRango(Estado estado) {
-		Eslabon eslabonPacman = Laberinto.getInstance().getEslabonDePacman();
-		Fantasma fantasma = estado.getFantasma();
-
+	private boolean pacmanEnRango(Eslabon eslabonPacman, Eslabon eslabonFantasma) {
 		int filaPacman = eslabonPacman.getFila();
 		int columnaPacman = eslabonPacman.getColumna();
-		int filaFantasma = fantasma.getEslabon().getFila();
-		int columnaFantasma = fantasma.getEslabon().getColumna();
+		int filaFantasma = eslabonFantasma.getFila();
+		int columnaFantasma = eslabonFantasma.getColumna();
 
 		if (filaPacman == filaFantasma) {
 			return Math.abs(columnaPacman - columnaFantasma) <= rangoVisionInicial;
 		} else {
-			int deltaMaximoColumna = Math.abs(rangoVisionInicial - Math.abs(filaFantasma - filaPacman));
+			int deltaMaximoColumna = Math.abs(rangoVisionInicial
+					- Math.abs(filaFantasma - filaPacman));
 			return Math.abs(columnaFantasma - columnaPacman) <= deltaMaximoColumna;
 		}
 	}
-
-	@Deprecated
-	private Eslabon localizarPacman(Fantasma fantasma) {
-		List<Eslabon> eslabones = getEslabonesEnRango(0, 0, fantasma.getEslabon(), null);
-		Eslabon eslabonPacman = null;
-		for (Iterator<Eslabon> iterator = eslabones.iterator(); iterator.hasNext();) {
-			Eslabon eslabon = (Eslabon) iterator.next();
-			for (Iterator<Comible> iterator2 = eslabon.getComibles().iterator(); iterator2
-					.hasNext();) {
-				Comible comible = (Comible) iterator2.next();
-				if (comible instanceof Pacman) {
-					eslabonPacman = comible.getEslabon();
-				}
-
-			}
+	
+	private Direccion direccionOpuesta(Direccion direccion){
+		switch (direccion){
+			case ARRIBA:
+				return Direccion.ABAJO;
+			case ABAJO:
+				return Direccion.ARRIBA;
+			case DERECHA:
+				return Direccion.IZQUIERDA;
+			case IZQUIERDA:
+				return Direccion.DERECHA;
 		}
-		return eslabonPacman;
+		return null;
 	}
 
-	@Deprecated
-	private List<Eslabon> getEslabonesEnRango(int distanciaEnX, int distanciaEnY,
-			Eslabon eslabonActual, Direccion direccionEntrada) {
-		List<Eslabon> eslabones = new ArrayList<Eslabon>();
-		if (eslabonActual != null) {
-			if (distanciaEnX < rangoVisionInicial && direccionEntrada != Direccion.DERECHA) {
-				eslabones.addAll(getEslabonesEnRango(distanciaEnX + 1, distanciaEnY,
-						eslabonActual.getEslabonDerecho(), Direccion.DERECHA));
-			}
-			if (distanciaEnX > -rangoVisionInicial && direccionEntrada != Direccion.IZQUIERDA) {
-				eslabones.addAll(getEslabonesEnRango(distanciaEnX - 1, distanciaEnY,
-						eslabonActual.getEslabonIzquierdo(), Direccion.IZQUIERDA));
-			}
-			if (distanciaEnY < rangoVisionInicial && direccionEntrada != Direccion.ARRIBA) {
-				eslabones.addAll(getEslabonesEnRango(distanciaEnX, distanciaEnY + 1,
-						eslabonActual.getEslabonArriba(), Direccion.ARRIBA));
-			}
-			if (distanciaEnY > -rangoVisionInicial && direccionEntrada != Direccion.ABAJO) {
-				eslabones.addAll(getEslabonesEnRango(distanciaEnX, distanciaEnY - 1,
-						eslabonActual.getEslabonAbajo(), Direccion.ABAJO));
-			}
-			eslabones.add(eslabonActual);
-		}
-		return eslabones;
-	}
+	// Averiguo la direccion calculando la direccion del vector PosFantasma - PosPacman
+	private Direccion direccionHaciaElPacman(Eslabon eslabonPacman, Eslabon eslabonFantasma) {
+		int direccionX = eslabonFantasma.getFila() - eslabonPacman.getColumna();
+		int direccionY = eslabonFantasma.getColumna() - eslabonPacman.getColumna();
 
+		//esta en los cuadrantes I y II 
+		if (direccionY < 0) {
+			// si no es una pared
+			if (eslabonFantasma.getEslabonAbajo() != null)
+				return Direccion.ABAJO;
+			else if (direccionX > 0)
+				return Direccion.DERECHA;
+			else
+				return Direccion.IZQUIERDA;
+		} else {
+			if (eslabonFantasma.getEslabonArriba() != null)
+				return Direccion.ARRIBA;
+			else if (direccionX > 0)
+				return Direccion.DERECHA;
+			else
+				return Direccion.IZQUIERDA;
+		}
+	}
 }
