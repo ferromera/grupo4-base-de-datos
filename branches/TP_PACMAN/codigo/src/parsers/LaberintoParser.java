@@ -40,7 +40,7 @@ public class LaberintoParser {
 			Eslabon posicionInicialPacman = eslabones.get(laberintoRoot.getAttribute("posicionInicialPacman"));
 			Eslabon posicionSalidaFantasmas = eslabones.get(laberintoRoot.getAttribute("posicionSalidaFantasmas"));
 			
-			return new Laberinto(ancho, alto, posicionInicialPacman, posicionSalidaFantasmas, eslabones);
+			return Laberinto.valueOf(ancho, alto, posicionInicialPacman, posicionSalidaFantasmas, eslabones);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

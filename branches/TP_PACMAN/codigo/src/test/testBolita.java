@@ -22,7 +22,7 @@ public class testBolita  extends TestCase{
 		Eslabon posicionInicialPacman = new Eslabon(1, 2);
 		Eslabon posicionSalidaFantasmas = new Eslabon(5, 5);
 		Map<Integer, Eslabon> eslabones = new HashMap<Integer, Eslabon>();
-		laberinto = new Laberinto(10, 10 , posicionInicialPacman , posicionSalidaFantasmas, eslabones );
+		laberinto = Laberinto.valueOf(10, 10 , posicionInicialPacman , posicionSalidaFantasmas, eslabones );
 		bolita = new Bolita(eslabon, laberinto);
 	}
 
