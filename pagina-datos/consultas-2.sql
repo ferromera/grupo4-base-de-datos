@@ -62,12 +62,43 @@ select r1.matricula from indicacionmedica r1 where not exists (
 
 /*
 6. El plan con mayor cantidad de afiliados.---> pero si hay mas de uno??
+
+Select obraSocial, plan
+from afiliado
+group by obraSocial, plan
+having count(*)>= all(Select count(*)
+ from afiliado
+group by obraSocial, plan)
+
 */
 /*
 8. Para cada obra social, su promedio de cantidad de pacientes por plan.
 */
-SELECT r1.obrasocial,r1.plan,count(*) cantidad_por_os FROM afiliado r1
-group by r1.obrasocial,r1.plan
+Select obraSocial, count(*) /count(distinct(plan)) 'promedio'
+from afiliado
+group by ObraSocial
+
+9.
+
+Select NumeroQuirofano
+from IndicacionMedica
+group by NumeroQuirofano
+having count(*)>= all(Select count(*)
+from IndicacionMedica
+group by NumeroQuirofano)
+
+10.
+
+select tipoDoc , numeroDoc, count(*) as 'indicaciones medicas' from indicacionmedica
+group by tipoDoc, numeroDoc
+union 
+select tipoDoc, numeroDoc, 0 as 'indicaciones medicas' from paciente p 
+ where not exists (select tipoDoc, numeroDoc from indicacionmedica i 
+where i.tipoDoc = p.tipoDoc
+and i.numeroDoc = p.numeroDoc)
+
+
+----------
 
 
 UTIL
