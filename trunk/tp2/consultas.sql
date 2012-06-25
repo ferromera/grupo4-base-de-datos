@@ -4,6 +4,7 @@ antes del 30 / 5 / 2012.
 */
 select distinct(r1.matricula) from indicacionmedica r1 where r1.fecha < '20120530'
 	and r1.matricula not in (Select r2.matricula from indicacionmedica r2 where r2.fecha >= '20120530');
+
 /*
 2. Tipo de documento Numero de documento y Nombre de las personas
 que tienen un mismo numero de afiliado en distintas obras sociales
@@ -37,7 +38,8 @@ select * from paciente p where exists(
 4. Matriculas de los profesionales que tienen indicaciones medicas para
 todos los CPT.
 */
---matriculas para los cuales no existe CPT que no este en indicacion medica
+/*matriculas para los cuales no existe CPT que no este en indicacion medica */
+
 select distinct(r1.matricula) from indicacionmedica r1 where not exists (
 	select * from cpt r2 where
 		not exists (
@@ -56,43 +58,51 @@ select r1.matricula from indicacionmedica r1 where not exists (
       and r2.numeroDoc = r1.numeroDoc
       and r2.nombre = 'Arnaldo'
       and r2.apellido = 'Andre'
-)
+);
 
 /*
 6. El plan con mayor cantidad de afiliados.---> pero si hay mas de uno??
 */
 
-Select obraSocial, plan
+select obraSocial, plan
 from afiliado
 group by obraSocial, plan
 having count(*)>= all(Select count(*)
  from afiliado
-group by obraSocial, plan)
+group by obraSocial, plan);
 
-
+/* 
+7. Para todos los pacientes con al menos una indicacion medica, el nombre y plan de su
+ cobertura. En caso de no tener, indicar 'SIN COBERTURA' en ambos campos(Hipotesis tomada:
+ 1 paciente puede estar afiliado a 1 plan de una obra social o a ninguno).
 /*
+
 8. Para cada obra social, su promedio de cantidad de pacientes por plan.
 */
-Select obraSocial, count(*) /count(distinct(plan)) 'promedio'
-from afiliado
-group by ObraSocial
+select obraSocial, count(*) /count(distinct(plan)) 'promedio'
+    from afiliado
+        group by ObraSocial;
 
-/* 9.
+/* 
+9. El número de quirofano con la mayor cantidad de turnos reservados.
 */
 
-Select NumeroQuirofano
-from IndicacionMedica
-group by NumeroQuirofano
-having count(*)>= all(Select count(*)
-from IndicacionMedica
-group by NumeroQuirofano)
+select NumeroQuirofano
+    from IndicacionMedica
+        group by NumeroQuirofano
+            having count(*)>= all(Select count(*)
+                from IndicacionMedica
+                    group by NumeroQuirofano);
 
-/* 10.
+/* 
+10. Para todos los pacientes del sistema, la cantidad de indicaciones medicas que tiene
+ (indicar 0 en caso de no tener).
 */
-select tipoDoc , numeroDoc, count(*) as 'indicaciones medicas' from indicacionmedica
-group by tipoDoc, numeroDoc
-union 
-select tipoDoc, numeroDoc, 0 as 'indicaciones medicas' from paciente p 
- where not exists (select tipoDoc, numeroDoc from indicacionmedica i 
-where i.tipoDoc = p.tipoDoc
-and i.numeroDoc = p.numeroDoc);
+
+select tipoDoc , numeroDoc, count(*) from indicacionmedica
+    group by tipoDoc, numeroDoc
+        union 
+            select tipoDoc, numeroDoc, 0 from paciente p 
+                where not exists (select tipoDoc, numeroDoc from indicacionmedica i 
+                                    where i.tipoDoc = p.tipoDoc
+                                        and i.numeroDoc = p.numeroDoc);
