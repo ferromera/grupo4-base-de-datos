@@ -1,2 +1,7 @@
-NumeroQuirofano
-1
+tipoDoc,numeroDoc,cantIndicaciones
+DNI,11111111,1
+DNI,22222222,1
+DNI,55555555,2
+LC,44444444,1
+DNI,33333333,0
+DNI,66666666,0

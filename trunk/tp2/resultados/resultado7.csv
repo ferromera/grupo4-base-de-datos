@@ -1,5 +1,5 @@
-nombre,apellido,obraSocial,plan
-Arnaldo,Andre,OSDE,310
-Beatriz,Bordo,OSDE,310
-Edgar,Egar,GALENO,AZUL
-Denis,Derek,"SIN COBERTURA","SIN COBERTURA"
+TipoDoc,numeroDoc,obraSocial,plan
+DNI,11111111,OSDE,310
+DNI,22222222,OSDE,310
+DNI,55555555,GALENO,AZUL
+LC,44444444,"SIN COBERTURA","SIN COBERTURA"

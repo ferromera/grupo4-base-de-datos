@@ -1,3 +1,4 @@
+use `tp2`;
 /*
 1. Matriculas de los profesionales que unicamente tienen indicaciones
 antes del 30 / 5 / 2012.
@@ -21,13 +22,12 @@ select r1.tipodoc,r1.numerodoc,r1.nombre from paciente r1,afiliado a
 
 /* 3-
 */
-select obraSocial,p.* from afiliado a,paciente p
-where p.tipoDoc=a.tipoDoc and p.numeroDoc=a.numeroDoc
-    and exists (
-	select max(numeroafiliado),obrasocial from afiliado a2
-	group by a2.obrasocial
-	having a2.obrasocial = a.obrasocial and a.numeroafiliado = max(numeroafiliado)
-	);
+select obraSocial,a.tipoDoc , a.numeroDoc from afiliado a
+where exists ( 
+    select max(numeroafiliado),obrasocial from afiliado a2 
+    group by a2.obrasocial 
+    having a2.obrasocial = a.obrasocial and a.numeroafiliado = max(numeroafiliado) 
+    );
 
 /*
 4. Matriculas de los profesionales que tienen indicaciones medicas para
@@ -72,19 +72,20 @@ group by obraSocial, plan);
  cobertura. En caso de no tener, indicar 'SIN COBERTURA' en ambos campos(Hipotesis tomada:
  1 paciente puede estar afiliado a 1 plan de una obra social o a ninguno).
 */
-select nombre,apellido,obraSocial,plan
-from paciente p, afiliado a
-where  a.numeroDoc = p.numeroDoc
-   and   a.tipoDoc = p.tipoDoc
-   and   exists ( select * from indicacionmedica i
-                       where i.tipoDoc = p.tipoDoc and i.numeroDoc = p.numeroDoc )
+select distinct  p.TipoDoc, p.numeroDoc,obraSocial,plan
+from indicacionmedica i,paciente p, afiliado a
+where  i.numeroDoc = p.numeroDoc
+   and   i.tipoDoc = p.tipoDoc
+    and   i.numeroDoc = a.numeroDoc
+   and   i.tipoDoc = a.tipoDoc
+
 union
-select  nombre,apellido, 'SIN COBERTURA', 'SIN COBERTURA'
-from  paciente p
-where   exists ( select * from indicacionmedica i
-                       where i.tipoDoc = p.tipoDoc and i.numeroDoc = p.numeroDoc )
-   and   not exists ( select * from afiliado a
-                             where p.tipoDoc = a.tipoDoc and p.numeroDoc = a.numeroDoc );
+select distinct p.TipoDoc, p.numeroDoc, 'SIN COBERTURA', 'SIN COBERTURA'
+from indicacionmedica i, paciente p
+where   i.tipoDoc = p.tipoDoc
+    and   i.numeroDoc = p.numeroDoc
+   and   not exists ( select * from afiliado a 
+                      where i.tipoDoc = a.tipoDoc and i.numeroDoc = a.numeroDoc );
 /*
 8. Para cada obra social, su promedio de cantidad de pacientes por plan.
 */
@@ -109,7 +110,7 @@ select NumeroQuirofano
  de no tener).
 */
 
-select tipoDoc , numeroDoc, count(*) from indicacionmedica
+select tipoDoc , numeroDoc, count(*) cantIndicaciones from indicacionmedica
     group by tipoDoc, numeroDoc
         union 
             select tipoDoc, numeroDoc, 0 from paciente p 
