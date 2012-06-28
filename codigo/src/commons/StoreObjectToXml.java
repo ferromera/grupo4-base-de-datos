@@ -22,6 +22,7 @@ public class StoreObjectToXml {
 	private String fileName;
 	private Document rootJuego;
 	private Element listaFantasmas;
+
 	public StoreObjectToXml(String fileName) {
 		this.fileName = fileName;
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -36,26 +37,27 @@ public class StoreObjectToXml {
 			e.printStackTrace();
 		}
 	}
+
 	public void writeToXml(Fantasma fantasma) {
 		Element elemFantasma = fantasma.writeToXmlFormat(this.rootJuego);
 		listaFantasmas.appendChild(elemFantasma);
 	}
-	
-	public void persistFile(){
+
+	public void persistFile() {
 		OutputFormat format = new OutputFormat(this.rootJuego);
 		format.setLineSeparator(LineSeparator.Unix);
 		format.setIndenting(true);
-		format.setLineWidth(0);             
+		format.setLineWidth(0);
 		format.setPreserveSpace(false);
 		format.setOmitXMLDeclaration(true);
-		
+
 		FileOutputStream salidaXML;
 		try {
 			salidaXML = new FileOutputStream(new File(this.fileName));
-			XMLSerializer serializer = new XMLSerializer(salidaXML,format);
+			XMLSerializer serializer = new XMLSerializer(salidaXML, format);
 			serializer.asDOMSerializer();
 			serializer.serialize(this.rootJuego);
-			salidaXML.close();		
+			salidaXML.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
