@@ -32,13 +32,13 @@ public class LaberintoParser {
 			Element laberintoRoot = doc.getDocumentElement();
 			int ancho = Integer.parseInt(laberintoRoot.getAttribute("ancho"));
 			int alto = Integer.parseInt(laberintoRoot.getAttribute("alto"));
-			NodeList eslabonesList = doc.getElementsByTagName("eslabon");
+			NodeList eslabonesList = doc.getElementsByTagName("nodo");
 			
 			eslabones = LaberintoParser.primeraPasadaCreaNodos(eslabonesList);
 			eslabones = LaberintoParser.segundaPasadaVinculaEslabones(eslabonesList, eslabones);
 
-			Eslabon posicionInicialPacman = eslabones.get(Integer.parseInt(laberintoRoot.getAttribute("posicionInicialPacman")));
-			Eslabon posicionSalidaFantasmas = eslabones.get(Integer.parseInt(laberintoRoot.getAttribute("posicionSalidaFantasmas")));
+			Eslabon posicionInicialPacman = eslabones.get(Integer.parseInt(laberintoRoot.getAttribute("inicioPacman")));
+			Eslabon posicionSalidaFantasmas = eslabones.get(Integer.parseInt(laberintoRoot.getAttribute("inicioFantasmas")));
 			
 			return Laberinto.valueOf(ancho, alto, posicionInicialPacman, posicionSalidaFantasmas, eslabones);
 			
@@ -65,7 +65,7 @@ public class LaberintoParser {
 				id = Integer.parseInt(eslabonXml.getAttribute("id"));
 				fila = Integer.parseInt(eslabonXml.getAttribute("fila"));
 				columna = Integer.parseInt(eslabonXml.getAttribute("columna"));
-				String comidaString = eslabonXml.getAttribute("comida");
+				String comidaString = eslabonXml.getAttribute("contiene");
 				eslabon = new Eslabon(fila, columna);
 				
 				if (comidaString.equals("bolita")) {
