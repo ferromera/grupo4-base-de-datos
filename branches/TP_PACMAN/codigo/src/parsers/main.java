@@ -25,7 +25,7 @@ public class main {
 		while (!laberinto.esFinDelJuego()){
 			
 			try {
-				final String nombreArchivo = "C:/otra/branches/TP_PACMAN/codigo/" + archivoPacman + String.valueOf(inicial) + extension;
+				final String nombreArchivo = archivoPacman + String.valueOf(inicial) + extension;
 				File fXmlFile = new File(nombreArchivo);
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
