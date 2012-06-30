@@ -50,7 +50,7 @@ public class main {
 					laberinto.getPacman().mover(Direccion.ABAJO);
 				}
 				
-				laberinto.moverFantasmas();				
+				laberinto.moverFantasmas();	
 				inicial ++;
 				
 				//aca hay que sacar los archivos

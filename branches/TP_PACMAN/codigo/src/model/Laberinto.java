@@ -37,9 +37,9 @@ public class Laberinto implements PacmanProvider {
 		this.fantasmas = new ArrayList<Fantasma>();
 
 		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaPerezoso(this)));
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaBuscador(this)));
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaBuscadorTemperamental(this)));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
 
 		this.pacman = new Pacman(this.posicionInicialPacman);
 
