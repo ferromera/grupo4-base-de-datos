@@ -80,7 +80,7 @@ public class main {
 		String archivoPersonajesSalida= "PersonajesTick";
 		
 		
-		StoreObjectToXml storeObjectToXml = new StoreObjectToXml(archivoPersonajesSalida + String.valueOf(iteracion) + extension);
+		StoreObjectToXml storeObjectToXml = new StoreObjectToXml(archivoPersonajesSalida + String.valueOf(iteracion) + extension, laberinto.getPacman());
 		for (Fantasma fantasma : laberinto.getFanstamas()) {
 			storeObjectToXml.writeToXml(fantasma);
 		}

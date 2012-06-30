@@ -110,4 +110,9 @@ public class Eslabon {
 			iterator.next().esComidoPor(pacman);
 		}
 	}
+
+	public int getId() {
+		
+		return id;
+	}
 }
