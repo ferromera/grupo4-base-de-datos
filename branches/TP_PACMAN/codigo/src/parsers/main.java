@@ -18,6 +18,7 @@ public class main {
 	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) throws InterruptedException {
+		
 		int inicial = 1;
 		String archivoPacman = "pacmanTick";
 		String extension = ".xml";
@@ -52,6 +53,8 @@ public class main {
 				
 				laberinto.moverFantasmas();	
 				inicial ++;
+				
+				
 				
 				//aca hay que sacar los archivos
 			} catch (Exception e) {
