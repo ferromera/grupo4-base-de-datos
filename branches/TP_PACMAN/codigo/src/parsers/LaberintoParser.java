@@ -66,7 +66,7 @@ public class LaberintoParser {
 				fila = Integer.parseInt(eslabonXml.getAttribute("fila"));
 				columna = Integer.parseInt(eslabonXml.getAttribute("columna"));
 				String comidaString = eslabonXml.getAttribute("contiene");
-				eslabon = new Eslabon(fila, columna);
+				eslabon = new Eslabon(fila, columna, id);
 				
 				if (comidaString.equals("bolita")) {
 					comida = new Bolita(eslabon, null);

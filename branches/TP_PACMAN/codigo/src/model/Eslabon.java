@@ -15,11 +15,13 @@ public class Eslabon {
 	private List <Comible> comibles; 
 	private int fila;
 	private int columna;
+	private int id;
 
 	
-	public Eslabon(int fila, int columna) {
+	public Eslabon(int fila, int columna, int id) {
 		this.fila = fila;
 		this.columna = columna;
+		this.id = id;
 		comibles = new ArrayList<Comible>();
 	}
 	

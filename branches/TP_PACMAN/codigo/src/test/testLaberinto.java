@@ -17,8 +17,8 @@ public class testLaberinto extends TestCase {
 	}
 	
 	public void testCrearLaberinto() {
-		Eslabon posicionInicialPacman = new Eslabon(1, 2);
-		Eslabon posicionSalidaFantasmas = new Eslabon(4, 4);
+		Eslabon posicionInicialPacman = new Eslabon(1, 2,12);
+		Eslabon posicionSalidaFantasmas = new Eslabon(4, 4,44);
 		Map<Integer, Eslabon> eslabones = new HashMap<Integer, Eslabon>();
 		laberinto = Laberinto.valueOf(10, 10, posicionInicialPacman , posicionSalidaFantasmas , eslabones );
 		assertEquals(laberinto.getEslabonDePacman(),  posicionInicialPacman);

@@ -12,7 +12,7 @@ public class testPacman extends TestCase{
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		eslabon = new Eslabon(1,2); 
+		eslabon = new Eslabon(1,2,12); 
 	}
 	
 	public void testCrearPacman(){

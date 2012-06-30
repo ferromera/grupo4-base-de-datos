@@ -19,7 +19,7 @@ public class TestPersistencia extends TestCase {
 			}
 		});
 		
-		Eslabon eslabonFantasma = new Eslabon(1, 1);
+		Eslabon eslabonFantasma = new Eslabon(1, 1, 1);
 		Fantasma fantasma = new Fantasma(eslabonFantasma, estrategia);
 		String fileName = "PersonajesTick1.xml";
 		
