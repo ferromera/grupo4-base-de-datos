@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 public class Laberinto implements PacmanProvider {
 	private final int ancho;
 	private final int alto;
@@ -68,6 +70,9 @@ public class Laberinto implements PacmanProvider {
 		for (Fantasma f : fantasmas) {
 			f.mover();
 		}
+	}
+	public List<Fantasma> getFanstamas(){
+		return fantasmas;
 	}
 
 }

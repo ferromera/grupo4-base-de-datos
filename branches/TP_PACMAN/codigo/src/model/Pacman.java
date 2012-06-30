@@ -81,6 +81,7 @@ public class Pacman implements Comible, Movible {
 	}
 	public void serComido(Fantasma fantasma){
 		muerto = true;
+		System.out.println("El pacman fue Comido!!! Se termina el juego");
 	}
 
 	@Override
