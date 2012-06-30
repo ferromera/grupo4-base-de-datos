@@ -1,14 +1,13 @@
 package model;
 
-
-
-
 public class Pacman implements Comible, Movible {
 	private Eslabon eslabon;
+	private boolean muerto;
 
 	public Pacman(Eslabon eslabon){
 		this.eslabon = eslabon;
 		this.eslabon.addComible(this);
+		muerto = false;
 	}
 
 	@Override
@@ -32,12 +31,32 @@ public class Pacman implements Comible, Movible {
 		this.comerEn(eslabon);
 		//aca va la estrategia por ahora hardcodeado a ir arriba
 	}
+	
+	public void mover(Direccion direccion){
+		Eslabon proximoEslabon = eslabon;
+
+		switch (direccion ) {
+		case ARRIBA:
+			proximoEslabon = eslabon.getEslabonArriba();
+			break;
+		case ABAJO:
+			proximoEslabon = eslabon.getEslabonAbajo();
+			break;
+		case DERECHA:
+			proximoEslabon = eslabon.getEslabonDerecho();
+			break;
+		case IZQUIERDA:
+			proximoEslabon = eslabon.getEslabonIzquierdo();
+			break;
+		}
+			this.comerEn(proximoEslabon);
+	}
 
 	public void comerEn(Eslabon eslabon2) {
-
 		if (eslabon2!=null){
 			eslabon2.comiblesComidosPor(this);
-		}	
+		}
+		eslabon = eslabon2;
 	}
 
 	@Override
@@ -61,7 +80,7 @@ public class Pacman implements Comible, Movible {
 		fantasma.serComido(this);		
 	}
 	public void serComido(Fantasma fantasma){
-		//TODO
+		muerto = true;
 	}
 
 	@Override
@@ -72,6 +91,10 @@ public class Pacman implements Comible, Movible {
 	public void setEslabon(Eslabon eslabon) {
 		this.eslabon = eslabon;
 		this.eslabon.addComible(this);
+	}
+	
+	public boolean estaMuerto(){
+		return muerto;
 	}
 
 }
