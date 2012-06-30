@@ -8,7 +8,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import commons.StoreObjectToXml;
+
 import model.Direccion;
+import model.Fantasma;
 import model.Laberinto;
 
 public class main {
@@ -19,14 +22,14 @@ public class main {
 	 */
 	public static void main(String[] args) throws InterruptedException {
 		
-		int inicial = 1;
+		int iteracion = 1;
 		String archivoPacman = "pacmanTick";
 		String extension = ".xml";
 		Laberinto laberinto = LaberintoParser.build("laberinto.xml");
 		while (!laberinto.esFinDelJuego()){
 			
 			try {
-				final String nombreArchivo = archivoPacman + String.valueOf(inicial) + extension;
+				final String nombreArchivo = archivoPacman + String.valueOf(iteracion) + extension;
 				File fXmlFile = new File(nombreArchivo);
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -52,7 +55,12 @@ public class main {
 				}
 				
 				laberinto.moverFantasmas();	
-				inicial ++;
+				
+				
+				escribirArchivosSalida(laberinto, iteracion);
+				
+				
+				iteracion ++;
 				
 				
 				
@@ -62,6 +70,21 @@ public class main {
 			}
 			Thread.sleep(1000);	
 		}
+	}
+
+	private static void escribirArchivosSalida(Laberinto laberinto,
+			int iteracion) {
+		
+		String extension = ".xml";
+		String archivoLaberintoSalida = "LaberintoTick";
+		String archivoPersonajesSalida= "PersonajesTick";
+		
+		
+		StoreObjectToXml storeObjectToXml = new StoreObjectToXml(archivoPersonajesSalida + String.valueOf(iteracion) + extension);
+		for (Fantasma fantasma : laberinto.getFanstamas()) {
+			storeObjectToXml.writeToXml(fantasma);
+		}
+		storeObjectToXml.persistFile();
 	}
 
 }
