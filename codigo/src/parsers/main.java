@@ -1,6 +1,8 @@
 package parsers;
 
 import java.io.File;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,6 +13,7 @@ import org.w3c.dom.Element;
 import commons.StoreObjectToXml;
 
 import model.Direccion;
+import model.Eslabon;
 import model.Fantasma;
 import model.Laberinto;
 
@@ -85,6 +88,17 @@ public class main {
 			storeObjectToXml.writeToXml(fantasma);
 		}
 		storeObjectToXml.persistFile();
+		
+		 Map<Integer, Eslabon> eslabones = laberinto.getEslabones();
+		 
+		 
+        
+        for (Entry<Integer, Eslabon> entry : eslabones.entrySet()) {
+        	System.out.println("Key : " + entry.getKey() 
+       			+ " Value : " + entry.getValue());
+        }
+		
+		
 	}
 
 }

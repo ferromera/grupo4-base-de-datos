@@ -3,11 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 import commons.PersistibleXML;
 
 public class Laberinto implements PacmanProvider , PersistibleXML{
@@ -84,5 +81,16 @@ public class Laberinto implements PacmanProvider , PersistibleXML{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public  Map<Integer, Eslabon> getEslabones() {
+		return eslabones;
+	}
+	public int getAlto(){
+		return this.alto;
+	}
+	public int getAncho(){
+		return this.ancho;
+	}
+	
 
 }

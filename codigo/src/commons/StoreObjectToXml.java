@@ -61,7 +61,7 @@ public class StoreObjectToXml {
 		format.setOmitXMLDeclaration(true);
 
 		FileOutputStream salidaXML;
-		try {
+		try { 
 			salidaXML = new FileOutputStream(new File(this.fileName));
 			XMLSerializer serializer = new XMLSerializer(salidaXML, format);
 			serializer.asDOMSerializer();
