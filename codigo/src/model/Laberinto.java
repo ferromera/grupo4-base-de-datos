@@ -37,9 +37,9 @@ public class Laberinto implements PacmanProvider {
 		this.fantasmas = new ArrayList<Fantasma>();
 
 		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
-		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaPerezoso(this)));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaBuscador(this)));
+		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaBuscadorTemperamental(this)));
 
 		this.pacman = new Pacman(this.posicionInicialPacman);
 
@@ -59,6 +59,15 @@ public class Laberinto implements PacmanProvider {
 
 	public Pacman getPacman() {
 		return pacman;
+	}
+
+	public boolean esFinDelJuego() {
+		return pacman.estaMuerto();
+	}
+	public void moverFantasmas(){
+		for (Fantasma f : fantasmas) {
+			f.mover();
+		}
 	}
 
 }
