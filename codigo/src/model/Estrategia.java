@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 public abstract class Estrategia {
 	protected int rangoVision;
 	protected PacmanProvider pacmanProvider;
@@ -63,6 +65,15 @@ public abstract class Estrategia {
 		} else if (estado instanceof Presa) {
 			estado.mover(direccionOpuesta(direccionHaciaElPacman(eslabonPacman, eslabonFantasma)));
 		}
+	}
+	protected void moverseRandom(Eslabon eslabonFantasma, Estado estado){
+		Eslabon proximoEslabon = null;
+		Direccion direccion = null;
+		while(proximoEslabon == null) {   
+			direccion = Direccion.values()[new Random().nextInt(4) + 1];
+			proximoEslabon  =  eslabonFantasma.getEslabonEnDireccion(direccion);
+			}
+		estado.mover(direccion);
 	}
 	
 }

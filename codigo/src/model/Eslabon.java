@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 public class Eslabon {
 	
 	private Eslabon eslabonArriba;
@@ -77,6 +79,26 @@ public class Eslabon {
 		}
 		
 		//comibles.remove(comible);*/		
+	}
+	
+	public Eslabon getEslabonEnDireccion(Direccion direccion){
+		Eslabon eslabonEnDireccion = null;
+		switch (direccion) {
+		case ARRIBA:
+			eslabonEnDireccion  = eslabonArriba;
+			break;
+		case ABAJO:
+			eslabonEnDireccion  = eslabonAbajo;
+			break;
+		case IZQUIERDA:
+			eslabonEnDireccion  = eslabonIzquierdo;
+			break;
+		case DERECHA:
+			eslabonEnDireccion  = eslabonDerecho;
+			break;
+			}
+		return eslabonEnDireccion;
+		
 	}
 
 	public void comiblesComidosPor(Pacman pacman) {
