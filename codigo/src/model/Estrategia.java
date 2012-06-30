@@ -70,7 +70,7 @@ public abstract class Estrategia {
 		Eslabon proximoEslabon = null;
 		Direccion direccion = null;
 		while(proximoEslabon == null) {   
-			direccion = Direccion.values()[new Random().nextInt(4) + 1];
+			direccion = Direccion.values()[new Random().nextInt(4) ];
 			proximoEslabon  =  eslabonFantasma.getEslabonEnDireccion(direccion);
 			}
 		estado.mover(direccion);
