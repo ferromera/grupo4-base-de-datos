@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
-public class Laberinto implements PacmanProvider {
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+import commons.PersistibleXML;
+
+public class Laberinto implements PacmanProvider , PersistibleXML{
 	private final int ancho;
 	private final int alto;
 	private final Eslabon posicionInicialPacman;
@@ -73,6 +77,12 @@ public class Laberinto implements PacmanProvider {
 	}
 	public List<Fantasma> getFanstamas(){
 		return fantasmas;
+	}
+
+	@Override
+	public Element writeToXmlFormat(Document listFantasmas) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

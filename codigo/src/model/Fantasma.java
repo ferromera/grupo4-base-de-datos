@@ -88,8 +88,8 @@ public class Fantasma implements Movible, Comible ,PersistibleXML{
 	@Override
 	public Element writeToXmlFormat(Document listFantasmas) {
 		Element elemFantasma = listFantasmas.createElement("fantasma");
-		elemFantasma.setAttribute("id", "");
-		elemFantasma.setAttribute("nodo", "");
+		elemFantasma.setAttribute("id", "?");
+		elemFantasma.setAttribute("nodo", String.valueOf(eslabon.getId()));
 		elemFantasma.setAttribute("fila", String.valueOf(this.eslabon.getFila()));
 		elemFantasma.setAttribute("columna", String.valueOf(this.eslabon.getColumna()));
 		elemFantasma.setAttribute("sentido", "");
