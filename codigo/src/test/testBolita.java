@@ -18,9 +18,9 @@ public class testBolita  extends TestCase{
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		eslabon = new Eslabon(3, 3);
-		Eslabon posicionInicialPacman = new Eslabon(1, 2);
-		Eslabon posicionSalidaFantasmas = new Eslabon(5, 5);
+		eslabon = new Eslabon(3, 3,33);
+		Eslabon posicionInicialPacman = new Eslabon(1, 2,12);
+		Eslabon posicionSalidaFantasmas = new Eslabon(5, 5,55);
 		Map<Integer, Eslabon> eslabones = new HashMap<Integer, Eslabon>();
 		laberinto = Laberinto.valueOf(10, 10 , posicionInicialPacman , posicionSalidaFantasmas, eslabones );
 		bolita = new Bolita(eslabon, laberinto);

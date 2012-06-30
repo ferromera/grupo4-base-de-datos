@@ -21,7 +21,7 @@ public class testFantasma extends TestCase{
 	
 	@Override
 	protected void setUp(){
-		eslabon = new Eslabon(1,1);
+		eslabon = new Eslabon(1,1,11);
 		estrategia = new EstrategiaZonzo(new PacmanProvider() {
 			@Override
 			public Eslabon getEslabonDePacman() {
