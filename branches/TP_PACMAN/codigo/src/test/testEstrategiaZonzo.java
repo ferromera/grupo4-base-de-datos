@@ -72,7 +72,5 @@ public class testEstrategiaZonzo extends TestCase {
 		fantasma.mover();
 		assertTrue(fantasma.getEslabon().getFila() == 5);
 		assertTrue(fantasma.getEslabon().getColumna() == 5);
-		
-		
 	}
 }

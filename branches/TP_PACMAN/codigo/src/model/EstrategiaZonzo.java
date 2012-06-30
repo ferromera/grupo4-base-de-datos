@@ -14,13 +14,10 @@ public class EstrategiaZonzo extends Estrategia {
 		Eslabon eslabonFantasma = estado.getFantasma().getEslabon();
 		
 		if (pacmanEnRango(eslabonPacman, eslabonFantasma)) {
-			if (estado instanceof Cazador) {
-				estado.mover(direccionHaciaElPacman(eslabonPacman, eslabonFantasma));
-			} else if (estado instanceof Presa) {
-				estado.mover(direccionOpuesta(direccionHaciaElPacman(eslabonPacman, eslabonFantasma)));
-			}
+			moverHaciaPosicionDePacman(estado, eslabonFantasma, eslabonPacman);
 		} else {
 			estado.mover(Direccion.values()[new Random().nextInt(4) + 1]);
 		}
 	}
+	
 }

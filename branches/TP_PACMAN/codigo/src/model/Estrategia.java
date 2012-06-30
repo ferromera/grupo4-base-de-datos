@@ -1,12 +1,12 @@
 package model;
 
 public abstract class Estrategia {
-	protected int rangoVisionInicial;
+	protected int rangoVision;
 	protected PacmanProvider pacmanProvider;
 
 	protected Estrategia(PacmanProvider pacmanProvider, int rangoVisionInicial){
 		this.pacmanProvider = pacmanProvider;
-		this.rangoVisionInicial = rangoVisionInicial;
+		this.rangoVision = rangoVisionInicial;
 	}
 	
 	abstract void mover(Estado estado);
@@ -18,9 +18,9 @@ public abstract class Estrategia {
 		int columnaFantasma = eslabonFantasma.getColumna();
 
 		if (filaPacman == filaFantasma) {
-			return Math.abs(columnaPacman - columnaFantasma) <= rangoVisionInicial;
+			return Math.abs(columnaPacman - columnaFantasma) <= rangoVision;
 		} else {
-			int deltaMaximoColumna = Math.abs(rangoVisionInicial - Math.abs(filaFantasma - filaPacman));
+			int deltaMaximoColumna = Math.abs(rangoVision - Math.abs(filaFantasma - filaPacman));
 			return Math.abs(columnaFantasma - columnaPacman) <= deltaMaximoColumna;
 		}
 	}
@@ -57,4 +57,12 @@ public abstract class Estrategia {
 		}
 	}
 
+	protected void moverHaciaPosicionDePacman(Estado estado, Eslabon eslabonFantasma, Eslabon eslabonPacman){
+		if (estado instanceof Cazador) {
+			estado.mover(direccionHaciaElPacman(eslabonPacman, eslabonFantasma));
+		} else if (estado instanceof Presa) {
+			estado.mover(direccionOpuesta(direccionHaciaElPacman(eslabonPacman, eslabonFantasma)));
+		}
+	}
+	
 }
