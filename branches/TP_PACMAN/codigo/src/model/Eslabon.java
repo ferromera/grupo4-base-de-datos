@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 public class Eslabon {
@@ -114,5 +117,32 @@ public class Eslabon {
 	public int getId() {
 		
 		return id;
+	}
+
+	public Element writeToXmlFormat(Document listEslabones) {
+		Element elemFantasma = listEslabones.createElement("nodo");
+		elemFantasma.setAttribute("id", String.valueOf(id));
+		elemFantasma.setAttribute("fila", String.valueOf(fila));
+		elemFantasma.setAttribute("columna", String.valueOf(columna));
+		elemFantasma.setAttribute("contiene", getAlimentoContenido());
+		elemFantasma.setAttribute("izquierda", String.valueOf(this.getEslabonIzquierdo().getId()));
+		elemFantasma.setAttribute("derecha", String.valueOf(this.getEslabonDerecho().getId()));
+		elemFantasma.setAttribute("arriba", String.valueOf(this.getEslabonArriba().getId()));
+		elemFantasma.setAttribute("abajo", String.valueOf(this.getEslabonAbajo().getId()));
+		return elemFantasma;
+	}
+
+	private String getAlimentoContenido() {
+		String contenido =""; 
+		for (Comible comible : comibles) {
+			if (comible instanceof Bolita){
+				contenido = "bolita";
+			}
+			if (comible instanceof Bolon){
+				contenido = "bolon";
+			}
+		}
+		
+		return contenido;
 	}
 }
