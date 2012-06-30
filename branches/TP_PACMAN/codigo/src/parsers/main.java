@@ -49,9 +49,9 @@ public class main {
 				if (direccion.equals("abajo")){
 					laberinto.getPacman().mover(Direccion.ABAJO);
 				}
-				inicial ++;
-				laberinto.moverFantasmas();				
 				
+				laberinto.moverFantasmas();				
+				inicial ++;
 				
 				//aca hay que sacar los archivos
 			} catch (Exception e) {
