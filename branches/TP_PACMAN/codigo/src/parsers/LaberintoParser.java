@@ -90,16 +90,29 @@ public class LaberintoParser {
 			if (e.getNodeType() == Node.ELEMENT_NODE) {
 				Element eslabonXml = (Element) e;
 				id = LaberintoParser.parseAttribute(eslabonXml, "id");
+					
 				arriba = LaberintoParser.parseAttribute(eslabonXml, "arriba");
 				abajo = LaberintoParser.parseAttribute(eslabonXml, "abajo");
 				izquierda = LaberintoParser.parseAttribute(eslabonXml, "izquierda");
 				derecha = LaberintoParser.parseAttribute(eslabonXml, "derecha");
 
+				
+				Eslabon eslabonArriba = validarEslabon(eslabones.get(arriba));
+				Eslabon eslabonAbajo = validarEslabon(eslabones.get(abajo));
+				Eslabon eslabonIzquierda = validarEslabon(eslabones.get(izquierda));
+				Eslabon eslabonDerecha = validarEslabon(eslabones.get(derecha));
+				
 				Eslabon eslabon = eslabones.get(id);
+				/*
 				eslabon.setEslabonArriba(eslabones.get(arriba));
 				eslabon.setEslabonAbajo(eslabones.get(abajo));
 				eslabon.setEslabonIzquierdo(eslabones.get(izquierda));
 				eslabon.setEslabonDerecho(eslabones.get(derecha));
+				*/
+				eslabon.setEslabonArriba(eslabonArriba);
+				eslabon.setEslabonAbajo(eslabonAbajo);
+				eslabon.setEslabonIzquierdo(eslabonIzquierda);
+				eslabon.setEslabonDerecho(eslabonDerecha);
 			}
 		}
 
@@ -110,8 +123,17 @@ public class LaberintoParser {
 		if(element.getAttribute(attr).isEmpty()){
 			return 0;
 		}else{
-			return Integer.parseInt(element.getAttribute("id"));
+			return Integer.parseInt(element.getAttribute(attr));
 		}
 	}
+	
+	public static Eslabon validarEslabon (Eslabon eslabon){
+		Eslabon retorno = eslabon;
+		if (eslabon.getId()==0){
+			retorno = null;
+		}
+		return retorno;
+	}
+	
 
 }

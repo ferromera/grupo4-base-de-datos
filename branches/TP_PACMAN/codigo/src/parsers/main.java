@@ -1,21 +1,19 @@
 package parsers;
 
 import java.io.File;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import model.Direccion;
+import model.Fantasma;
+import model.Laberinto;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import commons.StoreCasillerosToXML;
 import commons.StoreObjectToXml;
-
-import model.Direccion;
-import model.Eslabon;
-import model.Fantasma;
-import model.Laberinto;
 
 public class main {
 
@@ -58,15 +56,8 @@ public class main {
 				}
 				
 				laberinto.moverFantasmas();	
-				
-				
 				escribirArchivosSalida(laberinto, iteracion);
-				
-				
 				iteracion ++;
-				
-				
-				
 				//aca hay que sacar los archivos
 			} catch (Exception e) {
 				
@@ -89,16 +80,8 @@ public class main {
 		}
 		storeObjectToXml.persistFile();
 		
-		 Map<Integer, Eslabon> eslabones = laberinto.getEslabones();
-		 
-		 
-        
-        for (Entry<Integer, Eslabon> entry : eslabones.entrySet()) {
-        	System.out.println("Key : " + entry.getKey() 
-       			+ " Value : " + entry.getValue());
-        }
-		
-		
+		StoreCasillerosToXML storeCasillerosToXML = new StoreCasillerosToXML(archivoLaberintoSalida + String.valueOf(iteracion) + extension, laberinto);
+		storeCasillerosToXML.persistFile();
 	}
 
 }

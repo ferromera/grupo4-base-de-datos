@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import commons.PersistibleXML;
@@ -45,8 +47,25 @@ public class Laberinto implements PacmanProvider , PersistibleXML{
 		this.fantasmas.add(new Fantasma(this.posicionSalidaFantasmas, new EstrategiaZonzo(this)));
 
 		this.pacman = new Pacman(this.posicionInicialPacman);
+		
+		referenciarBolitas();
 
 		Laberinto.instance = this;
+	}
+
+	private void referenciarBolitas() {
+		 Map<Integer, Eslabon> eslabones = this.getEslabones();
+	        for (Entry<Integer, Eslabon> entry : eslabones.entrySet()) {
+	        	entry.getKey(); 
+
+	        	for (Comible comible : entry.getValue().getComibles()) {
+	        		if (comible instanceof Bolon){
+	        			((Bolon)comible).setLaberinto(this);
+	        		}
+				}
+	        	;
+	        }
+		
 	}
 
 	public void iniciaPowerPellet() {
