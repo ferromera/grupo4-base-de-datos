@@ -18,14 +18,6 @@ public class EstrategiaZonzo extends Estrategia {
 		} else {
 			moverseRandom(eslabonFantasma, estado);
 			
-			/*
-			Eslabon proximoEslabon = null;
-			Direccion direccion = null;
-			while(proximoEslabon == null) {   
-				direccion = Direccion.values()[new Random().nextInt(4) + 1];
-				proximoEslabon  =  eslabonFantasma.getEslabonEnDireccion(direccion);
-				}
-			estado.mover(direccion);*/
 		}
 	}
 	

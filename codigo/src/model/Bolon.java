@@ -17,12 +17,21 @@ public class Bolon extends Punto {
 
 	@Override
 	public void esComidoPor(Movible movible) {
-		System.out.println("SOY BOLON Y SOY COMIDO por "+movible);
+		
+		movible.comerPunto(this);
 	}
 
 	@Override
 	public void serComido() {
 		laberinto.iniciaPowerPellet();
+		System.out.println("SOY BOLON Y SOY COMIDO ");
 		super.serComido();		
+	}
+
+
+
+	public void setLaberinto(Laberinto laberinto) {
+		this.laberinto = laberinto;
+		
 	}
 }

@@ -125,10 +125,10 @@ public class Eslabon {
 		elemFantasma.setAttribute("fila", String.valueOf(fila));
 		elemFantasma.setAttribute("columna", String.valueOf(columna));
 		elemFantasma.setAttribute("contiene", getAlimentoContenido());
-		elemFantasma.setAttribute("izquierda", String.valueOf(this.getEslabonIzquierdo().getId()));
-		elemFantasma.setAttribute("derecha", String.valueOf(this.getEslabonDerecho().getId()));
-		elemFantasma.setAttribute("arriba", String.valueOf(this.getEslabonArriba().getId()));
-		elemFantasma.setAttribute("abajo", String.valueOf(this.getEslabonAbajo().getId()));
+		elemFantasma.setAttribute("izquierda", parsearLinkEslabon(this.getEslabonIzquierdo()));
+		elemFantasma.setAttribute("derecha", parsearLinkEslabon(this.getEslabonDerecho()));
+		elemFantasma.setAttribute("arriba", parsearLinkEslabon(this.getEslabonArriba()));
+		elemFantasma.setAttribute("abajo", parsearLinkEslabon(this.getEslabonAbajo()));
 		return elemFantasma;
 	}
 
@@ -144,5 +144,12 @@ public class Eslabon {
 		}
 		
 		return contenido;
+	}
+	private String parsearLinkEslabon(Eslabon eslabon){
+		String retorno = "";
+		if (eslabon != null){
+			retorno = String.valueOf(eslabon.getId());
+		}
+		return retorno;
 	}
 }
